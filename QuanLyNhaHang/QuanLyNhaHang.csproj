@@ -150,6 +150,7 @@
     <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DAO\TableDAO.cs" />
     <Compile Include="DTO\Account.cs" />
+    <Compile Include="DTO\Class1.cs" />
     <Compile Include="DTO\Customers.cs" />
     <Compile Include="DTO\MenuItem.cs" />
     <Compile Include="DTO\Orders.cs" />
