@@ -11,6 +11,13 @@ namespace QuanLyNhaHang.DAO
 {
     public class OrderItemsDAO
     {
+        private static OrderItemsDAO instance;
+
+        public static OrderItemsDAO Instance
+        {
+            get { if (instance == null) instance = new OrderItemsDAO(); return OrderItemsDAO.instance; }
+            private set { OrderItemsDAO.instance = value; }
+        }
         private static readonly HttpClient client = new HttpClient();
 
         public async Task<List<OrderItem>> GetListOrderItemByOrderIDAsync(int OrderID)
