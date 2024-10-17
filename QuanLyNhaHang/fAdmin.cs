@@ -147,7 +147,7 @@ namespace QuanLyNhaHang
                 return;
             }
 
-            string url = "https://resmant1111-001-site1.jtempurl.com";
+            string url = "https://resmant1111-001-site1.jtempurl.com/Menu/List";
 
             using (HttpClient client = new HttpClient())
             {
@@ -164,6 +164,8 @@ namespace QuanLyNhaHang
                     };
 
                     string jsonData = JsonConvert.SerializeObject(food);
+                    
+                    
                     var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await client.PostAsync(url, content);
 

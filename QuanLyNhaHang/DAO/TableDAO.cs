@@ -3,6 +3,7 @@ using QuanLyNhaHang.DTO;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QuanLyNhaHang.DAO
@@ -56,6 +57,29 @@ namespace QuanLyNhaHang.DAO
             {
                 Console.WriteLine($"Exception: {ex.Message}");
                 return null;
+            }
+        }
+
+        public async Task<bool> UpdateTableStatusAsync(int tableID, string status)
+        {
+            // Đường dẫn tới API để cập nhật trạng thái bàn
+            string url = $"https://resmant1111-001-site1.jtempurl.com/Table/Update";
+            var tableData = new { ID = tableID, Status = status };
+            string jsonData = JsonConvert.SerializeObject(tableData);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    return response.IsSuccessStatusCode; // Trả về true nếu thành công
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception while updating table status: {ex.Message}");
+                    return false; // Trả về false nếu có lỗi
+                }
             }
         }
     }

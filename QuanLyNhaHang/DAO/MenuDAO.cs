@@ -8,13 +8,7 @@ namespace QuanLyNhaHang.DAO
 {
     public class MenuDAO
     {
-        private static MenuDAO instance;
-
-        public static MenuDAO Instance
-        {
-            get { if (instance == null) instance = new MenuDAO(); return MenuDAO.instance; }
-            private set { MenuDAO.instance = value; }
-        }
+        
         private static readonly HttpClient client = new HttpClient();
 
         public async Task<List<MenuItem>> GetMenuListAsync()

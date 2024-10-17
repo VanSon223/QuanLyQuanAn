@@ -38,5 +38,36 @@ namespace QuanLyNhaHang.DAO
                 return null;
             }
         }
+        public async Task<Orders> GetCurrentPendingOrderByTableID(int tableID)
+        {
+            
+            OrdersDAO orderDAO = new OrdersDAO();
+            List<Orders> listOrder = await orderDAO.GetListOrderByTableIDAsync();
+
+            // Lọc đơn hàng theo TableID và trạng thái "pending"
+            return listOrder.FirstOrDefault(o => o.TableID == tableID && o.Status == "Pending");
+        }
+        public async Task<bool> UpdateOrderStatusAsync(int orderId, string status)
+        {
+            string url = $"https://resmant1111-001-site1.jtempurl.com/Order/Update"; 
+            var orderData = new { orderId = orderId, status = status }; 
+            string jsonData = JsonConvert.SerializeObject(orderData);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    return response.IsSuccessStatusCode; // Trả về true nếu thành công
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception while updating order status: {ex.Message}");
+                    return false; // Trả về false nếu có lỗi
+                }
+            }
+        }
+
     }
 }

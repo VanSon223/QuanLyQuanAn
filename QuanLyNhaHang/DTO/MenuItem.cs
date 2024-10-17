@@ -34,8 +34,8 @@ namespace QuanLyNhaHang.DTO
         [JsonProperty("description")]
         public string Description { get; set; }
         
-        [JsonProperty("image")]
-        public byte[] Image { get; set; }
+        //[JsonProperty("image")]
+        //public byte[] Image { get; set; }
         
     }
 }
