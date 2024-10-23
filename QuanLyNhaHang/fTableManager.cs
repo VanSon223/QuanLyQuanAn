@@ -19,6 +19,7 @@ namespace QuanLyNhaHang
         {
             InitializeComponent();
             LoadTableList();
+            
         }
 
         #region Method
@@ -31,7 +32,7 @@ namespace QuanLyNhaHang
             foreach (Table item in tableList)
             {
                 Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
-                btn.Text = item.ID + System.Environment.NewLine + item.Name + System.Environment.NewLine + item.Status;
+                btn.Text = item.Name + System.Environment.NewLine + item.Status;
                 btn.Click += btn_Click;
                 btn.Tag = item;
 
@@ -65,14 +66,19 @@ namespace QuanLyNhaHang
             }
 
             // Lọc đơn hàng theo TableID
-            Orders order = listOrder.FirstOrDefault(o => o.TableID == tableID);
-
+            Orders order = listOrder.FirstOrDefault(o => o.TableID == tableID && o.Status == "Pending");
+           
             if (order == null)
             {
+                lbOrderID.Text = "#";
                 Console.WriteLine("Không tìm thấy đơn hàng cho TableID: " + tableID);
                 return;
             }
-            Console.WriteLine("Đã tìm thấy đơn hàng cho TableID: " + tableID);
+            else
+            {
+                lbOrderID.Text = order.OrderID.ToString();
+            }
+            //Console.WriteLine("Đã tìm thấy đơn hàng cho TableID: " + tableID);
 
             // Lấy tất cả OrderItems theo OrderID
             List<OrderItem> listOrderItem = await orderItemDAO.GetListOrderItemByOrderIDAsync(order.OrderID);
@@ -116,31 +122,13 @@ namespace QuanLyNhaHang
 
         #region event
 
+        private int currentTableID = -1;
         private void btn_Click(object sender, EventArgs e)
         {
             lsvBill.Items.Clear();
+            currentTableID = ((sender as Button).Tag as Table).ID;
 
-
-            Button btn = sender as Button;
-            if (btn == null)
-            {
-                MessageBox.Show("Không tìm thấy nút nhấn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            Table table = btn.Tag as Table;
-            if (table == null)
-            {
-                MessageBox.Show("Không tìm thấy thông tin bàn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
-            int TableID = table.ID;
-
-
-            ShowMenuItemsByTable(TableID);
+            ShowMenuItemsByTable(currentTableID);
         }
 
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
@@ -161,56 +149,72 @@ namespace QuanLyNhaHang
         }
         private async void btnCheckout_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem đã có bàn nào được chọn chưa
+            if (currentTableID == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn bàn nào để thanh toán.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Hiển thị hộp thoại xác nhận trước khi thanh toán
             var result = MessageBox.Show("Bạn có muốn thanh toán cho bàn này không?", "Xác nhận thanh toán", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                lsvBill.Items.Clear();
-                int tableID = ((Button)sender).Tag is Table table ? table.ID : 1;
+                OrdersDAO orderDAO = new OrdersDAO();
 
-                // Kiểm tra nếu tableID hợp lệ
-                if (tableID <= 0)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin bàn.");
-                    return;
-                    
-                }
-                txbtotalPrice.Clear();
-                Orders currentOrder = await OrdersDAO.Instance.GetCurrentPendingOrderByTableID(tableID);
+                // Lấy đơn hàng hiện tại của bàn
+                Orders currentOrder = await orderDAO.GetCurrentPendingOrderByTableID(currentTableID);
                 if (currentOrder == null)
                 {
-                    MessageBox.Show("Không tìm thấy đơn hàng đang chờ cho bàn này.");
+                    MessageBox.Show("Không tìm thấy đơn hàng cho bàn này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                bool isOrderUpdated = await OrdersDAO.Instance.UpdateOrderStatusAsync(currentOrder.OrderID, "Completed");
-                if (isOrderUpdated)
-                {
-                    MessageBox.Show("Đơn hàng đã được cập nhật thành công.");
 
-                    
-                    bool isTableUpdated = await TableDAO.Instance.UpdateTableStatusAsync(tableID, "Available");
-                    if (isTableUpdated)
-                    {
-                        MessageBox.Show("Trạng thái bàn đã được cập nhật thành công.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cập nhật trạng thái bàn không thành công.");
-                    }
+                // Cập nhật trạng thái đơn hàng thành "Completed"
+                currentOrder.Status = "Completed";
+                bool isOrderUpdated = await orderDAO.UpdateOrderStatusAsync(currentOrder);
+                if (!isOrderUpdated)
+                {
+                    MessageBox.Show("Cập nhật trạng thái đơn hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                Console.WriteLine("BAN TRUOC KHI CHUYEN THANH COMPLETED" + currentTableID);
+                // Cập nhật trạng thái của bàn thành "Available"
+                Table tableToUpdate = new Table
+                {
+                    ID = currentTableID,  // Sử dụng ID bàn đã chọn
+                    Status = "Available"   // Thay đổi trạng thái thành "Available"
+                };
+                //list table // id table // table(tableid ,....) 
+
+                bool isTableUpdated = await TableDAO.Instance.UpdateTableStatusAsync(currentTableID,"Available");
+                if (!isTableUpdated)
+                {
+                    MessageBox.Show("Cập nhật trạng thái bàn không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật trạng thái đơn hàng không thành công.");
+                    MessageBox.Show("Cập nhật trạng thái bàn thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
 
-                
-                 //LoadTableList(); 
-            }
+                // Xóa danh sách hóa đơn và tổng tiền hiển thị
+                lsvBill.Items.Clear();
+                txbtotalPrice.Clear();
 
-            
+                MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                flpTable.Controls.Clear();
+                LoadTableList(); // Giả định bạn có một phương thức để tải lại danh sách bàn
+            }
         }
+
+
+
         #endregion
+
+
     }
 }
 
