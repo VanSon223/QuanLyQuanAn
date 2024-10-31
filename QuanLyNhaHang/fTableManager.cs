@@ -156,6 +156,13 @@ namespace QuanLyNhaHang
                 return;
             }
 
+            // Kiểm tra SDT khách hàng
+            string customerPhone = textBox1.Text.Trim();
+            if (string.IsNullOrEmpty(customerPhone))
+            {
+                MessageBox.Show("Vui lòng nhập SDT của khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             // Hiển thị hộp thoại xác nhận trước khi thanh toán
             var result = MessageBox.Show("Bạn có muốn thanh toán cho bàn này không?", "Xác nhận thanh toán", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -179,7 +186,9 @@ namespace QuanLyNhaHang
                     MessageBox.Show("Cập nhật trạng thái đơn hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                Console.WriteLine("BAN TRUOC KHI CHUYEN THANH COMPLETED" + currentTableID);
+            
+
+
                 // Cập nhật trạng thái của bàn thành "Available"
                 Table tableToUpdate = new Table
                 {
@@ -187,7 +196,6 @@ namespace QuanLyNhaHang
                     Status = "Available"   // Thay đổi trạng thái thành "Available"
                 };
                 //list table // id table // table(tableid ,....) 
-
                 bool isTableUpdated = await TableDAO.Instance.UpdateTableStatusAsync(currentTableID,"Available");
                 if (!isTableUpdated)
                 {
@@ -196,9 +204,29 @@ namespace QuanLyNhaHang
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật trạng thái bàn thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Cập nhật trạng thái bàn thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
+                CustomersDAO customerDAO = new CustomersDAO();
+                Customers customer = await customerDAO.GetCustomerByPhoneNumberAsync(customerPhone);
+
+                // Kiểm tra xem khách hàng có tồn tại không
+                if (customer == null)
+                {
+                    MessageBox.Show("Không tìm thấy khách hàng với số điện thoại này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int newPoints = 0;
+                // Tính toán và cập nhật điểm khách hàng
+                newPoints = customer.Point + (int)(currentOrder.TotalAmount.Value / 100000)*10; // Giả sử điểm = 10% tổng hóa đơn
+                bool isPointUpdated = await customerDAO.UpdateCustomerPointAsync(customerPhone, newPoints); // Truyền số điểm cập nhật
+
+                if (!isPointUpdated)
+                {
+                    MessageBox.Show("Cập nhật điểm khách hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
 
                 // Xóa danh sách hóa đơn và tổng tiền hiển thị
                 lsvBill.Items.Clear();
@@ -206,15 +234,22 @@ namespace QuanLyNhaHang
 
                 MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 flpTable.Controls.Clear();
-                LoadTableList(); // Giả định bạn có một phương thức để tải lại danh sách bàn
+                LoadTableList(); 
             }
         }
 
 
 
+
         #endregion
 
-
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
 

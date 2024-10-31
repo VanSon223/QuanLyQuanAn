@@ -27,6 +27,7 @@ namespace QuanLyNhaHang
             LoadFoodList();
             LoadCustomerList();
             LoadTableList();
+            LoadStaffList();
         }
 
         async void LoadFoodList()
@@ -122,74 +123,39 @@ namespace QuanLyNhaHang
                 }
             }
         }
-
-        private async void btnAddFood_Click(object sender, EventArgs e)
+        async void LoadStaffList()
         {
-    
-            if (string.IsNullOrWhiteSpace(txbFoodName.Text))
-            {
-                MessageBox.Show("Tên món ăn không được để trống.");
-                return;
-            }
-            if (nmPrice.Value <= 0)
-            {
-                MessageBox.Show("Giá món ăn phải lớn hơn 0.");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txbCategory.Text))
-            {
-                MessageBox.Show("Loại món ăn không được để trống.");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txbDescription.Text))
-            {
-                MessageBox.Show("Mô tả không được để trống.");
-                return;
-            }
-
-            string url = "https://resmant1111-001-site1.jtempurl.com/Menu/List";
+            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Staff/List"; // Thay thế bằng URL API của bạn
 
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    var food = new
-                    {
-                        menuItemId = txbFoodID.Text,
-                        itemName = txbFoodName.Text,
-                        description = txbDescription.Text,
-                        price = nmPrice.Value,
-                        category = txbCategory.Text
-                        
-                    };
+                    // Gửi yêu cầu GET đến API
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    response.EnsureSuccessStatusCode(); // Đảm bảo phản hồi thành công
 
-                    string jsonData = JsonConvert.SerializeObject(food);
-                    
-                    
-                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                    HttpResponseMessage response = await client.PostAsync(url, content);
+                    // Đọc nội dung phản hồi dưới dạng chuỗi
+                    string responseBody = await response.Content.ReadAsStringAsync();
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show("Thêm món ăn thành công: " + responseBody);
-                    }
-                    else
-                    {
-                        string errorResponse = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show("Thêm món ăn thất bại: " + errorResponse);
-                    }
+                    // Giải mã JSON thành danh sách các đối tượng MenuItem
+                    List<Staff> staffList = JsonConvert.DeserializeObject<List<Staff>>(responseBody);
+
+                    // Gán DataSource của dtgvFood là danh sách đã giải mã
+                    dtgvStaff.DataSource = staffList;
                 }
-                catch (HttpRequestException httpEx)
+                catch (HttpRequestException e)
                 {
-                    MessageBox.Show("Lỗi yêu cầu HTTP: " + httpEx.Message);
+                    MessageBox.Show($"Lỗi yêu cầu: {e.Message}");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                    MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
                 }
             }
         }
+
+       
     }
     
 }

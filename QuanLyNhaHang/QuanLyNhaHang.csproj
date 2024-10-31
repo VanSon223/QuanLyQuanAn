@@ -145,9 +145,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\BillDAO.cs" />
+    <Compile Include="DAO\CustomersDAO.cs" />
     <Compile Include="DAO\MenuDAO.cs" />
     <Compile Include="DAO\OrderItemsDAO.cs" />
     <Compile Include="DAO\OrdersDAO.cs" />
+    <Compile Include="DAO\StaffDAO.cs" />
     <Compile Include="DAO\TableDAO.cs" />
     <Compile Include="DTO\Account.cs" />
     <Compile Include="DTO\Customers.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="DTO\Orders.cs" />
     <Compile Include="DTO\OrderItem.cs" />
     <Compile Include="DTO\Payment.cs" />
+    <Compile Include="DTO\Staff.cs" />
     <Compile Include="DTO\Table.cs" />
     <Compile Include="fAcccountProfile.cs">
       <SubType>Form</SubType>
@@ -202,6 +205,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -219,6 +223,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
