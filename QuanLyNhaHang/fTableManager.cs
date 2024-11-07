@@ -123,6 +123,7 @@ namespace QuanLyNhaHang
         #region event
 
         private int currentTableID = -1;
+        private Customers selectedCustomer;
         private void btn_Click(object sender, EventArgs e)
         {
             lsvBill.Items.Clear();
@@ -158,11 +159,11 @@ namespace QuanLyNhaHang
 
             // Kiểm tra SDT khách hàng
             string customerPhone = textBox1.Text.Trim();
-            if (string.IsNullOrEmpty(customerPhone))
-            {
-                MessageBox.Show("Vui lòng nhập SDT của khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (string.IsNullOrEmpty(customerPhone))
+            //{
+            //    MessageBox.Show("Vui lòng nhập SDT của khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
             // Hiển thị hộp thoại xác nhận trước khi thanh toán
             var result = MessageBox.Show("Bạn có muốn thanh toán cho bàn này không?", "Xác nhận thanh toán", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -207,32 +208,43 @@ namespace QuanLyNhaHang
                     MessageBox.Show("Cập nhật trạng thái bàn thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
-                CustomersDAO customerDAO = new CustomersDAO();
-                Customers customer = await customerDAO.GetCustomerByPhoneNumberAsync(customerPhone);
-
-                // Kiểm tra xem khách hàng có tồn tại không
-                if (customer == null)
+                if (selectedCustomer != null)
                 {
-                    MessageBox.Show("Không tìm thấy khách hàng với số điện thoại này.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                int newPoints = 0;
-                // Tính toán và cập nhật điểm khách hàng
-                newPoints = customer.Point + (int)(currentOrder.TotalAmount.Value / 100000)*10; // Giả sử điểm = 10% tổng hóa đơn
-                bool isPointUpdated = await customerDAO.UpdateCustomerPointAsync(customerPhone, newPoints); // Truyền số điểm cập nhật
+                    string username = selectedCustomer.Username;
+                    string phoneNumber = selectedCustomer.PhoneNumber;
+                    int newPoints = selectedCustomer.Point + (int)(currentOrder.TotalAmount.Value / 100000) * 10; // Giả sử điểm là 10% tổng hóa đơn
+                    
 
-                if (!isPointUpdated)
+                    CustomersDAO customerDAO = new CustomersDAO();
+                    bool isPointUpdated = await customerDAO.UpdateCustomerPointAsync(phoneNumber, newPoints, username);
+
+                    if (!isPointUpdated)
+                    {
+                        MessageBox.Show("Cập nhật điểm khách hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    MessageBox.Show("Thanh toán và cập nhật điểm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
                 {
-                    MessageBox.Show("Cập nhật điểm khách hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
 
-                // Xóa danh sách hóa đơn và tổng tiền hiển thị
+                //int newPoints = selectedCustomer.Point + (int)(currentOrder.TotalAmount.Value / 10000) * 10; // Giả sử điểm = 10% tổng hóa đơn
+                //CustomersDAO customerDAO = new CustomersDAO();
+                //bool isPointUpdated = await customerDAO.UpdateCustomerPointAsync(selectedCustomer.PhoneNumber, newPoints);
+
+                //if (!isPointUpdated)
+                //{
+                //    MessageBox.Show("Cập nhật điểm khách hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
+
+                //MessageBox.Show("Thanh toán và cập nhật điểm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lsvBill.Items.Clear();
                 txbtotalPrice.Clear();
-
-                MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 flpTable.Controls.Clear();
                 LoadTableList(); 
             }
@@ -250,6 +262,52 @@ namespace QuanLyNhaHang
                 e.Handled = true;
             }
         }
+
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            string customerPhone = textBox1.Text.Trim();
+            CustomersDAO customerDAO = new CustomersDAO();
+            List<Customers> customers = await customerDAO.GetCustomersByPhoneNumberAsync(customerPhone);
+
+            lsvKH.Items.Clear();
+
+            // Kiểm tra danh sách khách hàng có kết quả hay không
+            if (customers != null && customers.Count > 0)
+            {
+                // Duyệt qua từng khách hàng trong danh sách
+                foreach (var customer in customers)
+                {
+                    var item = new ListViewItem();
+                    item.Text = customer.Username;  // Hiển thị tên khách hàng
+                    item.Tag = customer;            // Gán đối tượng customer vào Tag
+                    item.SubItems.Add(customer.PhoneNumber);
+                    item.SubItems.Add(customer.Point.ToString());
+                    lsvKH.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Customer not found.");
+            }
+        }
+        
+        private void lsvKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lsvKH.SelectedItems.Count > 0)
+            {
+                // Lấy khách hàng đã chọn
+                var selectedItem = lsvKH.SelectedItems[0];
+                selectedCustomer = (Customers)selectedItem.Tag; // Gán đối tượng `selectedCustomer`
+
+                // Hiển thị thông báo với thông tin khách hàng được chọn
+                MessageBox.Show($"Bạn đã chọn khách hàng: {selectedCustomer.Username}",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
+
+
     }
 }
 

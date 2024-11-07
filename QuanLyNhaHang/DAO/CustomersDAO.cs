@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyNhaHang.DAO
 {
@@ -18,7 +19,7 @@ namespace QuanLyNhaHang.DAO
             private set { CustomersDAO.instance = value; }
         }
         private static readonly HttpClient client = new HttpClient();
-        public async Task<Customers> GetCustomerByPhoneNumberAsync(string phoneNumber)
+        public async Task<List<Customers>> GetCustomersByPhoneNumberAsync(string phoneNumber)
         {
             string url = "https://resmant1111-001-site1.jtempurl.com/Customer/List";
 
@@ -33,8 +34,10 @@ namespace QuanLyNhaHang.DAO
                 // Chuyển đổi JSON thành danh sách khách hàng
                 var customersList = JsonConvert.DeserializeObject<List<Customers>>(jsonResponse);
 
-                // Tìm khách hàng theo số điện thoại
-                return customersList.Find(c => c.PhoneNumber == phoneNumber);
+                // Lọc tất cả khách hàng có số điện thoại trùng khớp
+                var matchingCustomers = customersList.FindAll(c => c.PhoneNumber == phoneNumber);
+
+                return matchingCustomers;
             }
             catch (Exception ex)
             {
@@ -42,10 +45,12 @@ namespace QuanLyNhaHang.DAO
                 return null; // Trả về null nếu có lỗi
             }
         }
-        public async Task<bool> UpdateCustomerPointAsync(string phoneNumber, int point)
+
+        public async Task<bool> UpdateCustomerPointAsync(string phoneNumber, int point, string username)
         {
             // Tạo URL với tham số phone và point
-            string url = $"https://resmant1111-001-site1.jtempurl.com/Customer/UpdatePoint?phone={phoneNumber}&point={point}";
+            string url = $"https://resmant1111-001-site1.jtempurl.com/Customer/UpdatePoint?phone={phoneNumber}&point={point}&username={username}";
+        
 
             using (HttpClient client = new HttpClient())
             {
@@ -64,6 +69,7 @@ namespace QuanLyNhaHang.DAO
                 }
             }
         }
+        
 
 
 

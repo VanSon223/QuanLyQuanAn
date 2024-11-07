@@ -40,6 +40,13 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lsvKH = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.txbtotalPrice = new System.Windows.Forms.TextBox();
             this.nmDisCount = new System.Windows.Forms.NumericUpDown();
             this.btnDiscount = new System.Windows.Forms.Button();
@@ -47,8 +54,6 @@
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.lbOrderID = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -144,6 +149,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnSearch);
+            this.panel3.Controls.Add(this.lsvKH);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.txbtotalPrice);
@@ -154,6 +161,63 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(566, 133);
             this.panel3.TabIndex = 3;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(190, 8);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(35, 23);
+            this.btnSearch.TabIndex = 12;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lsvKH
+            // 
+            this.lsvKH.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.lsvKH.HideSelection = false;
+            this.lsvKH.Location = new System.Drawing.Point(7, 34);
+            this.lsvKH.Name = "lsvKH";
+            this.lsvKH.Size = new System.Drawing.Size(293, 96);
+            this.lsvKH.TabIndex = 11;
+            this.lsvKH.UseCompatibleStateImageBehavior = false;
+            this.lsvKH.View = System.Windows.Forms.View.Details;
+            this.lsvKH.SelectedIndexChanged += new System.EventHandler(this.lsvKH_SelectedIndexChanged);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "FullName";
+            this.columnHeader5.Width = 70;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Số điện thoại";
+            this.columnHeader6.Width = 95;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Điểm";
+            this.columnHeader7.Width = 69;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 19);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "SDT";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(51, 7);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 22);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // txbtotalPrice
             // 
@@ -169,7 +233,7 @@
             // 
             // nmDisCount
             // 
-            this.nmDisCount.Location = new System.Drawing.Point(147, 19);
+            this.nmDisCount.Location = new System.Drawing.Point(476, 8);
             this.nmDisCount.Name = "nmDisCount";
             this.nmDisCount.Size = new System.Drawing.Size(77, 22);
             this.nmDisCount.TabIndex = 5;
@@ -177,7 +241,7 @@
             // 
             // btnDiscount
             // 
-            this.btnDiscount.Location = new System.Drawing.Point(24, 14);
+            this.btnDiscount.Location = new System.Drawing.Point(306, 3);
             this.btnDiscount.Name = "btnDiscount";
             this.btnDiscount.Size = new System.Drawing.Size(77, 30);
             this.btnDiscount.TabIndex = 4;
@@ -219,24 +283,6 @@
             this.lbOrderID.Name = "lbOrderID";
             this.lbOrderID.Size = new System.Drawing.Size(0, 21);
             this.lbOrderID.TabIndex = 7;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(73, 95);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 22);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 19);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "SDT";
             // 
             // fTableManager
             // 
@@ -289,5 +335,10 @@
         private System.Windows.Forms.Label lbOrderID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ListView lsvKH;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
