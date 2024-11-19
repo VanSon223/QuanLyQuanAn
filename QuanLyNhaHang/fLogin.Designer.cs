@@ -139,7 +139,7 @@
             this.gntxbpass.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.gntxbpass.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.gntxbpass.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gntxbpass.Location = new System.Drawing.Point(37, 320);
+            this.gntxbpass.Location = new System.Drawing.Point(37, 325);
             this.gntxbpass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gntxbpass.Name = "gntxbpass";
             this.gntxbpass.PasswordChar = '●';
@@ -234,6 +234,7 @@
             this.ClientSize = new System.Drawing.Size(1140, 720);
             this.Controls.Add(this.guna2Panel2);
             this.Controls.Add(this.guna2Panel1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(43)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
