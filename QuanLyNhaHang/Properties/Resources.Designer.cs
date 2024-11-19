@@ -63,6 +63,26 @@ namespace QuanLyNhaHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5388768 {
+            get {
+                object obj = ResourceManager.GetObject("_5388768", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BGROUND {
+            get {
+                object obj = ResourceManager.GetObject("BGROUND", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap download {
             get {
                 object obj = ResourceManager.GetObject("download", resourceCulture);
@@ -76,6 +96,46 @@ namespace QuanLyNhaHang.Properties {
         internal static System.Drawing.Bitmap download1 {
             get {
                 object obj = ResourceManager.GetObject("download1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Login {
+            get {
+                object obj = ResourceManager.GetObject("Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snapedit_1731980824143 {
+            get {
+                object obj = ResourceManager.GetObject("snapedit_1731980824143", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snapedit_1731990810989 {
+            get {
+                object obj = ResourceManager.GetObject("snapedit_1731990810989", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z6047334488593_f1b30829a4a692543fd16f8fa3dd1f17 {
+            get {
+                object obj = ResourceManager.GetObject("z6047334488593_f1b30829a4a692543fd16f8fa3dd1f17", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyNhaHang.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,21 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuanLyNhaHang.DAO;
 
 namespace QuanLyNhaHang
 {
-    public partial class fLogin : Form
+    public partial class fLogin1 : Form
     {
-        public fLogin()
+        public fLogin1()
         {
             InitializeComponent();
-            
         }
-        async void guna2Button1_Click(object sender, EventArgs e)
+
+        async void btnlogin_Click(object sender, EventArgs e)
         {
-            string userName = gntxbTen.Text;     // Lấy tên đăng nhập từ TextBox
-            string passWord = gntxbpass.Text;    // Lấy mật khẩu từ TextBox
+            string userName = txbTen.Text;     // Lấy tên đăng nhập từ TextBox
+            string passWord = txbpass.Text;    // Lấy mật khẩu từ TextBox
 
             // Kiểm tra nếu tên đăng nhập hoặc mật khẩu để trống
             if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(passWord))
@@ -47,26 +47,31 @@ namespace QuanLyNhaHang
                 MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        //bool Login(string userName, string passWord)
+        //{
+        //    return AccountDAO.Instance.Login(userName, passWord);
+        //}
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void btnexit_Click(object sender, EventArgs e)
         {
-            this.Close();
-
+            Application.Exit();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void fLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel);
-
-            if (result != DialogResult.OK)
+            if (MessageBox.Show("Bạn có muốn thoát không?","Thông báo", MessageBoxButtons.OKCancel) != System.Windows.Forms.DialogResult.OK) 
             {
-                e.Cancel = true; // Hủy đóng form
+                e.Cancel=true;
             }
         }
 
-        private void guna2ControlBox2_Click(object sender, EventArgs e)
+        private void fLogin_Load(object sender, EventArgs e)
         {
+            panel1.BackColor = Color.FromArgb(20, 0, 0, 0);
+            panel2.BackColor = Color.FromArgb(20, 0, 0, 0);
+            panel3.BackColor = Color.FromArgb(20, 0, 0, 0);
 
         }
     }
 }
+
