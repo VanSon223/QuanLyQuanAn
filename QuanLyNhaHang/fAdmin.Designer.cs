@@ -37,6 +37,7 @@
             this.dtpkTodate = new System.Windows.Forms.DateTimePicker();
             this.dtpkFromdate = new System.Windows.Forms.DateTimePicker();
             this.tpFood = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txbSeachFoodName = new System.Windows.Forms.TextBox();
             this.btnSeachFood = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.dtgvFood = new System.Windows.Forms.DataGridView();
             this.tpFoodCatagory = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel26 = new System.Windows.Forms.Panel();
             this.txbTonKhoInventory = new System.Windows.Forms.TextBox();
@@ -78,6 +80,7 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.dtgvInventory = new System.Windows.Forms.DataGridView();
             this.tpTable = new System.Windows.Forms.TabPage();
+            this.label24 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.cbTableStatus = new System.Windows.Forms.ComboBox();
@@ -94,6 +97,7 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.dtgvTablelist = new System.Windows.Forms.DataGridView();
             this.tpAccount = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.btnReEnterAccount = new System.Windows.Forms.Button();
             this.panel28 = new System.Windows.Forms.Panel();
@@ -124,10 +128,6 @@
             this.panel38 = new System.Windows.Forms.Panel();
             this.txbCustomerID = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -268,6 +268,16 @@
             this.tpFood.TabIndex = 1;
             this.tpFood.Text = "Thức ăn";
             this.tpFood.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(44, 27);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(264, 24);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "THÔNG TIN CỦA THỨC ĂN";
             // 
             // panel6
             // 
@@ -473,6 +483,16 @@
             this.tpFoodCatagory.Text = "Kho hàng";
             this.tpFoodCatagory.UseVisualStyleBackColor = true;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(48, 25);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(307, 24);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "THÔNG TIN CỦA KHÁCH HÀNG";
+            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.panel26);
@@ -650,6 +670,16 @@
             this.tpTable.Text = "Bàn ăn";
             this.tpTable.UseVisualStyleBackColor = true;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(71, 28);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(248, 24);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "THÔNG TIN CỦA BÀN ĂN";
+            // 
             // panel17
             // 
             this.panel17.Controls.Add(this.panel23);
@@ -800,6 +830,16 @@
             this.tpAccount.Text = "Tài khoản";
             this.tpAccount.UseVisualStyleBackColor = true;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(57, 26);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(282, 24);
+            this.label25.TabIndex = 9;
+            this.label25.Text = "THÔNG TIN CỦA TÀI KHOẢN";
+            // 
             // panel27
             // 
             this.panel27.Controls.Add(this.btnReEnterAccount);
@@ -918,6 +958,7 @@
             this.dtgvStaff.RowTemplate.Height = 24;
             this.dtgvStaff.Size = new System.Drawing.Size(386, 391);
             this.dtgvStaff.TabIndex = 0;
+           
             // 
             // tpCustomer
             // 
@@ -1078,46 +1119,6 @@
             this.label20.Size = new System.Drawing.Size(36, 24);
             this.label20.TabIndex = 0;
             this.label20.Text = "ID:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(44, 27);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(264, 24);
-            this.label22.TabIndex = 9;
-            this.label22.Text = "THÔNG TIN CỦA THỨC ĂN";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(48, 25);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(307, 24);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "THÔNG TIN CỦA KHÁCH HÀNG";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(71, 28);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(248, 24);
-            this.label24.TabIndex = 9;
-            this.label24.Text = "THÔNG TIN CỦA BÀN ĂN";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(57, 26);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(282, 24);
-            this.label25.TabIndex = 9;
-            this.label25.Text = "THÔNG TIN CỦA TÀI KHOẢN";
             // 
             // fAdmin
             // 

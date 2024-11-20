@@ -113,6 +113,16 @@ namespace QuanLyNhaHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap png_clipart_computer_icons_logout_angle_text {
+            get {
+                object obj = ResourceManager.GetObject("png_clipart_computer_icons_logout_angle_text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap snapedit_1731980824143 {
             get {
                 object obj = ResourceManager.GetObject("snapedit_1731980824143", resourceCulture);
@@ -126,6 +136,16 @@ namespace QuanLyNhaHang.Properties {
         internal static System.Drawing.Bitmap snapedit_1731990810989 {
             get {
                 object obj = ResourceManager.GetObject("snapedit_1731990810989", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snapedit_1732110513899 {
+            get {
+                object obj = ResourceManager.GetObject("snapedit_1732110513899", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

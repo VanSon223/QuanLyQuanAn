@@ -1,56 +1,48 @@
-﻿using QuanLyNhaHang.DAO;
-using QuanLyNhaHang.DTO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Guna.UI2.WinForms;
-using Newtonsoft.Json;
+using QuanLyNhaHang.DTO;
+using QuanLyNhaHang.DAO;
+using System.Drawing;
 using System.Net.Http;
+using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Globalization;
+using System.Text;
+
 namespace QuanLyNhaHang
 {
-    public partial class fTableManager : Form
+    public partial class fTableManager1 : Form
     {
-        public fTableManager()
+        public fTableManager1()
         {
             InitializeComponent();
             LoadTableList();
-            LoadFoodRe();
+            
         }
+
         #region Method
+
+
         async void LoadTableList()
         {
-           
             List<Table> tableList = await TableDAO.Instance.GetTablesFromApiAsync();
 
             foreach (Table item in tableList)
             {
-                Guna2Button btn = new Guna2Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
+                Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
                 btn.Text = item.Name + System.Environment.NewLine + item.Status;
                 btn.Click += btn_Click;
                 btn.Tag = item;
-                btn.BorderRadius = 6;
-                btn.HoverState.FillColor = Color.LightBlue; // Màu khi hover
-                btn.HoverState.ForeColor = Color.Black;    // Màu chữ khi hover
-                btn.BorderThickness = 2;                   // Độ dày viền
-                btn.BorderColor = Color.DarkGray;
-               
-                
+
                 switch (item.Status)
                 {
                     case "Available":
-                        btn.FillColor = Color.Aqua; 
-                        btn.ForeColor = Color.Black; 
+                        btn.BackColor = Color.Aqua;
                         break;
                     default:
-                        btn.FillColor = Color.Red;
-                        btn.ForeColor = Color.White;
+                        btn.BackColor = Color.LightPink;
                         break;
                 }
 
@@ -75,7 +67,7 @@ namespace QuanLyNhaHang
 
             // Lọc đơn hàng theo TableID
             Orders order = listOrder.FirstOrDefault(o => o.TableID == tableID && o.Status == "Pending");
-
+           
             if (order == null)
             {
                 lbOrderID.Text = "#";
@@ -86,16 +78,7 @@ namespace QuanLyNhaHang
             {
                 lbOrderID.Text = order.OrderID.ToString();
             }
-            Customers customers = new Customers();
-            if (customers == null)
-            {
-                gn2htmlUsername.Text = "";
-
-            }
-            else { 
-                gn2htmlUsername.Text = customers.Username.ToString();
-            }
-            
+            //Console.WriteLine("Đã tìm thấy đơn hàng cho TableID: " + tableID);
 
             // Lấy tất cả OrderItems theo OrderID
             List<OrderItem> listOrderItem = await orderItemDAO.GetListOrderItemByOrderIDAsync(order.OrderID);
@@ -134,8 +117,11 @@ namespace QuanLyNhaHang
 
             txbtotalPrice.Text = totalPrice.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
         }
+
         #endregion
-        #region Event
+
+        #region event
+
         private int currentTableID = -1;
         private Customers selectedCustomer;
         private void btn_Click(object sender, EventArgs e)
@@ -145,24 +131,24 @@ namespace QuanLyNhaHang
 
             ShowMenuItemsByTable(currentTableID);
         }
-        private void gnbtnAdmin_Click(object sender, EventArgs e)
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAdmin f = new fAdmin();
-            f.ShowDialog();
+            this.Close();
         }
 
-        private void gnbtnInfor_Click(object sender, EventArgs e)
+        private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAcccountProfile f = new fAcccountProfile();
             f.ShowDialog();
         }
 
-        private void gnibtnExit_Click(object sender, EventArgs e)
+        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            fAdmin f = new fAdmin();
+            f.ShowDialog();
         }
-
-        private async void gnbtnCheckout_Click(object sender, EventArgs e)
+        private async void btnCheckout_Click(object sender, EventArgs e)
         {
             // Kiểm tra xem đã có bàn nào được chọn chưa
             if (currentTableID == -1)
@@ -201,7 +187,7 @@ namespace QuanLyNhaHang
                     MessageBox.Show("Cập nhật trạng thái đơn hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+            
 
 
                 // Cập nhật trạng thái của bàn thành "Available"
@@ -211,7 +197,7 @@ namespace QuanLyNhaHang
                     Status = "Available"   // Thay đổi trạng thái thành "Available"
                 };
                 //list table // id table // table(tableid ,....) 
-                bool isTableUpdated = await TableDAO.Instance.UpdateTableStatusAsync(currentTableID, "Available");
+                bool isTableUpdated = await TableDAO.Instance.UpdateTableStatusAsync(currentTableID,"Available");
                 if (!isTableUpdated)
                 {
                     MessageBox.Show("Cập nhật trạng thái bàn không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -227,7 +213,7 @@ namespace QuanLyNhaHang
                     string username = selectedCustomer.Username;
                     string phoneNumber = selectedCustomer.PhoneNumber;
                     int newPoints = selectedCustomer.Point + (int)(currentOrder.TotalAmount.Value / 100000) * 10; // Giả sử điểm là 10% tổng hóa đơn
-
+                    
 
                     CustomersDAO customerDAO = new CustomersDAO();
                     bool isPointUpdated = await customerDAO.UpdateCustomerPointAsync(phoneNumber, newPoints, username);
@@ -260,9 +246,15 @@ namespace QuanLyNhaHang
                 lsvBill.Items.Clear();
                 txbtotalPrice.Clear();
                 flpTable.Controls.Clear();
-                LoadTableList();
+                LoadTableList(); 
             }
         }
+
+
+
+
+        #endregion
+
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -298,7 +290,7 @@ namespace QuanLyNhaHang
                 MessageBox.Show("Customer not found.");
             }
         }
-
+        
         private void lsvKH_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lsvKH.SelectedItems.Count > 0)
@@ -314,39 +306,10 @@ namespace QuanLyNhaHang
                                 MessageBoxIcon.Information);
             }
         }
-        async void LoadFoodRe()
-        {
-            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Reservation/List"; // Thay thế bằng URL API của bạn
 
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    // Gửi yêu cầu GET đến API
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-                    response.EnsureSuccessStatusCode(); // Đảm bảo phản hồi thành công
-
-                    // Đọc nội dung phản hồi dưới dạng chuỗi
-                    string responseBody = await response.Content.ReadAsStringAsync();
-
-                    // Giải mã JSON thành danh sách các đối tượng MenuItem
-                    List<Reservation> reservationsList = JsonConvert.DeserializeObject<List<Reservation>>(responseBody);
-
-                    // Gán DataSource của dtgvFood là danh sách đã giải mã
-                    dtgvRe.DataSource =reservationsList;
-                }
-                catch (HttpRequestException e)
-                {
-                    MessageBox.Show($"Lỗi yêu cầu: {e.Message}");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
-                }
-            }
-        }
-        #endregion
-
-
+       
     }
 }
+
+
+
