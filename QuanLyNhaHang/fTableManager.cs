@@ -21,9 +21,12 @@ namespace QuanLyNhaHang
         {
             InitializeComponent();
             LoadTableList();
-            LoadFoodRe();
+            LoadReservations();
+            //lbFullname.Text = Session.FullName;
+            //Console.WriteLine(Session.FullName);
         }
         #region Method
+
         async void LoadTableList()
         {
            
@@ -31,26 +34,18 @@ namespace QuanLyNhaHang
 
             foreach (Table item in tableList)
             {
-                Guna2Button btn = new Guna2Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
+                Button btn = new Button() { Width = TableDAO.TableWidth, Height = TableDAO.TableHeight };
                 btn.Text = item.Name + System.Environment.NewLine + item.Status;
                 btn.Click += btn_Click;
                 btn.Tag = item;
-                btn.BorderRadius = 6;
-                btn.HoverState.FillColor = Color.LightBlue; // Màu khi hover
-                btn.HoverState.ForeColor = Color.Black;    // Màu chữ khi hover
-                btn.BorderThickness = 2;                   // Độ dày viền
-                btn.BorderColor = Color.DarkGray;
-               
-                
+
                 switch (item.Status)
                 {
                     case "Available":
-                        btn.FillColor = Color.Aqua; 
-                        btn.ForeColor = Color.Black; 
+                        btn.BackColor = Color.Aqua;
                         break;
                     default:
-                        btn.FillColor = Color.Red;
-                        btn.ForeColor = Color.White;
+                        btn.BackColor = Color.LightPink;
                         break;
                 }
 
@@ -86,16 +81,8 @@ namespace QuanLyNhaHang
             {
                 lbOrderID.Text = order.OrderID.ToString();
             }
-            Customers customers = new Customers();
-            if (customers == null)
-            {
-                gn2htmlUsername.Text = "";
+           
 
-            }
-            else { 
-                gn2htmlUsername.Text = customers.Username.ToString();
-            }
-            
 
             // Lấy tất cả OrderItems theo OrderID
             List<OrderItem> listOrderItem = await orderItemDAO.GetListOrderItemByOrderIDAsync(order.OrderID);
@@ -173,11 +160,6 @@ namespace QuanLyNhaHang
 
             // Kiểm tra SDT khách hàng
             string customerPhone = textBox1.Text.Trim();
-            //if (string.IsNullOrEmpty(customerPhone))
-            //{
-            //    MessageBox.Show("Vui lòng nhập SDT của khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
             // Hiển thị hộp thoại xác nhận trước khi thanh toán
             var result = MessageBox.Show("Bạn có muốn thanh toán cho bàn này không?", "Xác nhận thanh toán", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -210,7 +192,7 @@ namespace QuanLyNhaHang
                     ID = currentTableID,  // Sử dụng ID bàn đã chọn
                     Status = "Available"   // Thay đổi trạng thái thành "Available"
                 };
-                //list table // id table // table(tableid ,....) 
+                
                 bool isTableUpdated = await TableDAO.Instance.UpdateTableStatusAsync(currentTableID, "Available");
                 if (!isTableUpdated)
                 {
@@ -244,19 +226,7 @@ namespace QuanLyNhaHang
                 {
                     MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-
-                //int newPoints = selectedCustomer.Point + (int)(currentOrder.TotalAmount.Value / 10000) * 10; // Giả sử điểm = 10% tổng hóa đơn
-                //CustomersDAO customerDAO = new CustomersDAO();
-                //bool isPointUpdated = await customerDAO.UpdateCustomerPointAsync(selectedCustomer.PhoneNumber, newPoints);
-
-                //if (!isPointUpdated)
-                //{
-                //    MessageBox.Show("Cập nhật điểm khách hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
-
-                //MessageBox.Show("Thanh toán và cập nhật điểm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    
                 lsvBill.Items.Clear();
                 txbtotalPrice.Clear();
                 flpTable.Controls.Clear();
@@ -314,39 +284,67 @@ namespace QuanLyNhaHang
                                 MessageBoxIcon.Information);
             }
         }
-        async void LoadFoodRe()
+        async void LoadReservations()
         {
-            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Reservation/List"; // Thay thế bằng URL API của bạn
-
-            using (HttpClient client = new HttpClient())
+            try
             {
-                try
-                {
-                    // Gửi yêu cầu GET đến API
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-                    response.EnsureSuccessStatusCode(); // Đảm bảo phản hồi thành công
+                var reservations = await ReservationDAO.Instance.GetReservationsFromApiAsync();
 
-                    // Đọc nội dung phản hồi dưới dạng chuỗi
-                    string responseBody = await response.Content.ReadAsStringAsync();
-
-                    // Giải mã JSON thành danh sách các đối tượng MenuItem
-                    List<Reservation> reservationsList = JsonConvert.DeserializeObject<List<Reservation>>(responseBody);
-
-                    // Gán DataSource của dtgvFood là danh sách đã giải mã
-                    dtgvRe.DataSource =reservationsList;
-                }
-                catch (HttpRequestException e)
+                // Kiểm tra danh sách có dữ liệu hay không
+                if (reservations == null || !reservations.Any())
                 {
-                    MessageBox.Show($"Lỗi yêu cầu: {e.Message}");
+                    MessageBox.Show("Không có dữ liệu đặt bàn.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
-                catch (Exception ex)
+
+                
+                DateTime todayStart = DateTime.Now.Date; // 00:00:00 hôm nay
+                DateTime todayEnd = todayStart.AddDays(1).AddTicks(-1); // 23:59:59 hôm nay
+
+                // Lọc danh sách các đặt chỗ trong ngày hôm nay
+                var todayReservations = reservations
+                    .Where(r => r.ReservationTime.HasValue &&
+                                r.ReservationTime.Value >= todayStart &&
+                                r.ReservationTime.Value <= todayEnd)
+                    .ToList();
+
+                // Kiểm tra danh sách đặt chỗ trong ngày hôm nay
+                if (!todayReservations.Any())
                 {
-                    MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                    MessageBox.Show("Không có bàn nào được đặt trong ngày hôm nay.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+
+                // Gắn dữ liệu vào DataGridView
+                dtgvRe.DataSource = todayReservations
+                    .Select(r => new
+                    {
+                        r.ReservationId,
+                        r.TableId,
+                        ReservationTime = r.ReservationTime?.ToString("yyyy-MM-dd HH:mm:ss")
+                    })
+                    .ToList();
+
+                // Cấu hình tiêu đề cột
+                dtgvRe.Columns["ReservationId"].HeaderText = "Mã đặt bàn";
+                dtgvRe.Columns["TableId"].HeaderText = "Mã bàn";
+                dtgvRe.Columns["ReservationTime"].HeaderText = "Thời gian đặt";
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         #endregion
 
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadReservations();
+        }
 
+        
     }
 }

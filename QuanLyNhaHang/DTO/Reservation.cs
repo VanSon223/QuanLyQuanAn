@@ -5,23 +5,23 @@ namespace QuanLyNhaHang.DTO
 {
     public class Reservation
     {
-        // Constructor sửa lại, đặt tham số 'status' trước 'reservationTime'
-        public Reservation(  int tableId, DateTime? reservationTime = null)
+        
+        public Reservation(int reservationId, int customerId, int tableId, string status, DateTime? reservationTime )
         {
-            //ReservationId = reservationId;
-            //CustomerId = customerId;
+            ReservationId = reservationId;
+            CustomerId = customerId;
             TableId = tableId;
             ReservationTime = reservationTime;
-            //Status = status;
+            Status = status;
         }
 
         public Reservation() { }
 
-        //[JsonProperty("reservationId")]
-        //public int ReservationId { get; set; }
+        [JsonProperty("reservationId")]
+        public int ReservationId { get; set; }
 
-        //[JsonProperty("customerId")]
-        //public int CustomerId { get; set; }
+        [JsonProperty("customerId")]
+        public int CustomerId { get; set; }
 
         [JsonProperty("tableId")]
         public int TableId { get; set; }
@@ -29,7 +29,7 @@ namespace QuanLyNhaHang.DTO
         [JsonProperty("reservationTime")]
         public DateTime? ReservationTime { get; set; }
 
-        //[JsonProperty("status")]
-        //public string Status { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
     }
 }

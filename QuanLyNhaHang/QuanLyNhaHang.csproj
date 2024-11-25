@@ -187,6 +187,7 @@
     <Compile Include="DTO\OrderItem.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\Reservation.cs" />
+    <Compile Include="DTO\Session.cs" />
     <Compile Include="DTO\Staff.cs" />
     <Compile Include="DTO\Table.cs" />
     <Compile Include="fAcccountProfile.cs">

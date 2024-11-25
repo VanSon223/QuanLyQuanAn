@@ -20,30 +20,34 @@ namespace QuanLyNhaHang.DAO
         private static readonly HttpClient client = new HttpClient();
 
         // Phương thức để lấy danh sách bàn từ API
-        public async Task<List<Reservation>> GetTablesFromApiAsync()
+        public async Task<List<Reservation>> GetReservationsFromApiAsync()
         {
-            string url = "https://resmant1111-001-site1.jtempurl.com/Reservation/ActiveReservations";
+            string url = "https://resmant1111-001-site1.jtempurl.com/Reservation/List"; // Thay URL API
 
             try
             {
-                HttpResponseMessage response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
+                using (HttpClient client = new HttpClient())
                 {
-                    string jsonResponse = await response.Content.ReadAsStringAsync();
-                    List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonResponse);
-                    return reservations;
-                }
-                else
-                {
-                    Console.WriteLine("Lỗi khi lấy danh sách.");
-                    return null;
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonResponse);
+                        return reservations;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Lỗi khi gọi API: {response.StatusCode}");
+                        return null;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
+                Console.WriteLine($"Lỗi: {ex.Message}");
                 return null;
             }
         }
+
     }
 }

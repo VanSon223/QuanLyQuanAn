@@ -43,28 +43,39 @@ namespace QuanLyNhaHang.DAO
                 }
             }
         }
-        public async Task<bool> LoginAsync(string userName, string passWord)
+        public async Task<Staff> LoginAsync(string userName, string passWord)
         {
-           
-                string url = $"https://resmant1111-001-site1.jtempurl.com/staff/Login?username={userName}&password={passWord}";
+            string url = $"https://resmant1111-001-site1.jtempurl.com/staff/Login?username={userName}&password={passWord}";
 
-                
-                using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
+            {
+                try
                 {
-                    try
-                    {
-                        // Gửi yêu cầu PUT tới API
-                        HttpResponseMessage response = await client.PostAsync(url, null); // Không cần body, chỉ truyền query string
+                    // Gửi yêu cầu POST tới API
+                    HttpResponseMessage response = await client.PostAsync(url, null);
 
-                        // Kiểm tra nếu yêu cầu thành công
-                        return response.IsSuccessStatusCode;
-                    }
-                    catch (Exception ex)
+                    // Nếu đăng nhập thành công (status code 200)
+                    if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine($"Exception while updating staff status: {ex.Message}");
-                        return false;
+                        string json = await response.Content.ReadAsStringAsync();
+
+                        // Giả sử API trả về thông tin Staff dưới dạng JSON
+                        Staff loggedInStaff = JsonConvert.DeserializeObject<Staff>(json);
+                        return loggedInStaff;
+                    }
+                    else
+                    {
+                        // Đăng nhập thất bại
+                        return null;
                     }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception while logging in: {ex.Message}");
+                    return null;
+                }
+            }
         }
+
     }
 }

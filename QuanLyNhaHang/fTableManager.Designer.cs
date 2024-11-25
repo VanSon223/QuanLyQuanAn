@@ -52,7 +52,6 @@
             this.gnbtnInfor = new Guna.UI2.WinForms.Guna2Button();
             this.gnbtnAdmin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.gn2htmlUsername = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.gn2HtmllbName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -62,8 +61,10 @@
             this.gnbtnCheckout = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.dtgvRe = new System.Windows.Forms.DataGridView();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.lbFullname = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -206,7 +207,7 @@
             // 
             this.txbtotalPrice.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbtotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
-            this.txbtotalPrice.Location = new System.Drawing.Point(907, 9);
+            this.txbtotalPrice.Location = new System.Drawing.Point(476, 9);
             this.txbtotalPrice.Name = "txbtotalPrice";
             this.txbtotalPrice.ReadOnly = true;
             this.txbtotalPrice.Size = new System.Drawing.Size(265, 27);
@@ -303,7 +304,7 @@
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.LightGray;
-            this.guna2Panel2.Controls.Add(this.gn2htmlUsername);
+            this.guna2Panel2.Controls.Add(this.lbFullname);
             this.guna2Panel2.Controls.Add(this.gn2HtmllbName);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox2);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox1);
@@ -312,15 +313,6 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(1185, 29);
             this.guna2Panel2.TabIndex = 14;
-            // 
-            // gn2htmlUsername
-            // 
-            this.gn2htmlUsername.BackColor = System.Drawing.Color.Transparent;
-            this.gn2htmlUsername.Location = new System.Drawing.Point(52, 8);
-            this.gn2htmlUsername.Name = "gn2htmlUsername";
-            this.gn2htmlUsername.Size = new System.Drawing.Size(0, 0);
-            this.gn2htmlUsername.TabIndex = 17;
-            this.gn2htmlUsername.Text = null;
             // 
             // gn2HtmllbName
             // 
@@ -371,7 +363,7 @@
             this.guna2Panel3.ForeColor = System.Drawing.Color.White;
             this.guna2Panel3.Location = new System.Drawing.Point(161, 35);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(601, 443);
+            this.guna2Panel3.Size = new System.Drawing.Size(601, 397);
             this.guna2Panel3.TabIndex = 15;
             // 
             // flpTable
@@ -379,7 +371,7 @@
             this.flpTable.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flpTable.Location = new System.Drawing.Point(3, 3);
             this.flpTable.Name = "flpTable";
-            this.flpTable.Size = new System.Drawing.Size(595, 424);
+            this.flpTable.Size = new System.Drawing.Size(595, 382);
             this.flpTable.TabIndex = 6;
             // 
             // gnbtnCheckout
@@ -392,7 +384,7 @@
             this.gnbtnCheckout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
             this.gnbtnCheckout.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gnbtnCheckout.ForeColor = System.Drawing.Color.White;
-            this.gnbtnCheckout.Location = new System.Drawing.Point(907, 43);
+            this.gnbtnCheckout.Location = new System.Drawing.Point(476, 43);
             this.gnbtnCheckout.Name = "gnbtnCheckout";
             this.gnbtnCheckout.Size = new System.Drawing.Size(265, 45);
             this.gnbtnCheckout.TabIndex = 13;
@@ -405,39 +397,67 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.gnbtnCheckout);
             this.panel3.Controls.Add(this.txbtotalPrice);
-            this.panel3.Location = new System.Drawing.Point(155, 627);
+            this.panel3.Location = new System.Drawing.Point(586, 627);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1192, 93);
+            this.panel3.Size = new System.Drawing.Size(761, 93);
             this.panel3.TabIndex = 16;
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.dtgvRe);
-            this.panel4.Controls.Add(this.button1);
-            this.panel4.Location = new System.Drawing.Point(768, 422);
+            this.panel4.Controls.Add(this.btnLoad);
+            this.panel4.ForeColor = System.Drawing.Color.Black;
+            this.panel4.Location = new System.Drawing.Point(161, 438);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(276, 199);
+            this.panel4.Size = new System.Drawing.Size(470, 282);
             this.panel4.TabIndex = 17;
             // 
-            // button1
+            // label3
             // 
-            this.button1.Location = new System.Drawing.Point(196, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "icon";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(126, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(214, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Danh sách bàn đã được đặt";
             // 
             // dtgvRe
             // 
+            this.dtgvRe.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvRe.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dtgvRe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvRe.Location = new System.Drawing.Point(-3, 41);
+            this.dtgvRe.Location = new System.Drawing.Point(3, 27);
             this.dtgvRe.Name = "dtgvRe";
             this.dtgvRe.RowHeadersWidth = 51;
             this.dtgvRe.RowTemplate.Height = 24;
-            this.dtgvRe.Size = new System.Drawing.Size(274, 167);
+            this.dtgvRe.Size = new System.Drawing.Size(462, 250);
             this.dtgvRe.TabIndex = 1;
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Image = global::QuanLyNhaHang.Properties.Resources.BGROUND;
+            this.btnLoad.Location = new System.Drawing.Point(432, 0);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(23, 23);
+            this.btnLoad.TabIndex = 0;
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // lbFullname
+            // 
+            this.lbFullname.AutoSize = true;
+            this.lbFullname.BackColor = System.Drawing.Color.LightGray;
+            this.lbFullname.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFullname.ForeColor = System.Drawing.Color.Black;
+            this.lbFullname.Location = new System.Drawing.Point(59, 10);
+            this.lbFullname.Name = "lbFullname";
+            this.lbFullname.Size = new System.Drawing.Size(0, 19);
+            this.lbFullname.TabIndex = 17;
             // 
             // fTableManager
             // 
@@ -469,6 +489,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRe)).EndInit();
             this.ResumeLayout(false);
 
@@ -506,9 +527,10 @@
         private System.Windows.Forms.Panel panel3;
         private Guna.UI2.WinForms.Guna2ImageButton gnibtnExit;
         private Guna.UI2.WinForms.Guna2HtmlLabel gn2HtmllbName;
-        private Guna.UI2.WinForms.Guna2HtmlLabel gn2htmlUsername;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.DataGridView dtgvRe;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbFullname;
     }
 }

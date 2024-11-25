@@ -463,7 +463,7 @@
             // dtgvFood
             // 
             this.dtgvFood.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvFood.Location = new System.Drawing.Point(4, 13);
+            this.dtgvFood.Location = new System.Drawing.Point(-3, 13);
             this.dtgvFood.Name = "dtgvFood";
             this.dtgvFood.RowHeadersWidth = 51;
             this.dtgvFood.RowTemplate.Height = 24;
@@ -958,7 +958,6 @@
             this.dtgvStaff.RowTemplate.Height = 24;
             this.dtgvStaff.Size = new System.Drawing.Size(386, 391);
             this.dtgvStaff.TabIndex = 0;
-           
             // 
             // tpCustomer
             // 

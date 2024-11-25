@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using QuanLyNhaHang.DAO;
+using QuanLyNhaHang.DTO;
 
 namespace QuanLyNhaHang
 {
@@ -30,12 +25,15 @@ namespace QuanLyNhaHang
                 return;
             }
 
-            // Gọi API kiểm tra đăng nhập
-            bool loginSuccess = await StaffDAO.Instance.LoginAsync(userName, passWord);
+            // Gọi API kiểm tra đăng nhập và lấy thông tin người dùng
+            Staff loggedInUser = await StaffDAO.Instance.LoginAsync(userName, passWord);
 
-            if (loginSuccess)
+            if (loggedInUser != null)
             {
-                // Nếu đăng nhập thành công, mở form quản lý fTableManager
+                // Hiển thị tên đầy đủ của người dùng
+                MessageBox.Show($"Xin chào, {loggedInUser.FullName}!", "Đăng nhập thành công");
+
+                // Mở form quản lý
                 fTableManager f = new fTableManager();
                 this.Hide();
                 f.ShowDialog();
@@ -47,6 +45,7 @@ namespace QuanLyNhaHang
                 MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
