@@ -14,6 +14,7 @@ using Guna.UI2.WinForms;
 using Newtonsoft.Json;
 using System.Net.Http;
 using Microsoft.Reporting.WinForms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QuanLyNhaHang
 {
@@ -24,8 +25,7 @@ namespace QuanLyNhaHang
             InitializeComponent();
             LoadTableList();
             LoadReservations();
-            //lbFullname.Text = Session.FullName;
-            //Console.WriteLine(Session.FullName);
+            
         }
         #region Method
 
@@ -54,7 +54,6 @@ namespace QuanLyNhaHang
                 flpTable.Controls.Add(btn);
             }
         }
-
         async void ShowMenuItemsByTable(int tableID)
         {
             OrdersDAO orderDAO = new OrdersDAO();
@@ -140,11 +139,7 @@ namespace QuanLyNhaHang
             f.ShowDialog();
         }
 
-        private void gnbtnInfor_Click(object sender, EventArgs e)
-        {
-            fAcccountProfile f = new fAcccountProfile();
-            f.ShowDialog();
-        }
+        
 
         private void gnibtnExit_Click(object sender, EventArgs e)
         {
@@ -228,20 +223,20 @@ namespace QuanLyNhaHang
                 {
                     MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-    
-                
 
-                // Hiển thị form hóa đơn sau khi thanh toán
-                //decimal totalAmount = (int)currentOrder.TotalAmount;
-                //foreach (ListViewItem item in lsvBill.Items)
-                //{
-                //    totalAmount = decimal.Parse(item.SubItems[3].Text);  // Thành tiền của mỗi món
-                //}
 
-                //// Tạo form hóa đơn
-                //fInvoice invoiceForm = new fInvoice();
-                //invoiceForm.SetInvoiceData(lsvBill,currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount,DateTime.Now);
-                //invoiceForm.Show();
+
+                //Hiển thị form hóa đơn sau khi thanh toán
+                decimal totalAmount = (int)currentOrder.TotalAmount;
+                foreach (ListViewItem item in lsvBill.Items)
+                {
+                    totalAmount = decimal.Parse(item.SubItems[3].Text);  // Thành tiền của mỗi món
+                }
+
+                // Tạo form hóa đơn
+                fInvoice invoiceForm = new fInvoice();
+                invoiceForm.SetInvoiceData(lsvBill, currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount, DateTime.Now);
+                invoiceForm.Show();
 
                 lsvBill.Items.Clear();
                 txbtotalPrice.Clear();
@@ -358,6 +353,11 @@ namespace QuanLyNhaHang
             {
                 MessageBox.Show("Customer not found.");
             }
+        }
+
+       public void SetName(string fullName)
+        { 
+                lbName.Text = "Tên nhân viên:" + fullName;
         }
     }
 }

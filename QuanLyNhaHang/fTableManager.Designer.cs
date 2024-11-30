@@ -52,7 +52,6 @@
             this.gnbtnAdmin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.lbFullname = new System.Windows.Forms.Label();
-            this.gn2HtmllbName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
@@ -64,6 +63,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtgvRe = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.lbName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -287,8 +287,8 @@
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.LightGray;
+            this.guna2Panel2.Controls.Add(this.lbName);
             this.guna2Panel2.Controls.Add(this.lbFullname);
-            this.guna2Panel2.Controls.Add(this.gn2HtmllbName);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox2);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox1);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -307,17 +307,6 @@
             this.lbFullname.Name = "lbFullname";
             this.lbFullname.Size = new System.Drawing.Size(0, 19);
             this.lbFullname.TabIndex = 17;
-            // 
-            // gn2HtmllbName
-            // 
-            this.gn2HtmllbName.BackColor = System.Drawing.Color.Transparent;
-            this.gn2HtmllbName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gn2HtmllbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.gn2HtmllbName.Location = new System.Drawing.Point(6, 3);
-            this.gn2HtmllbName.Name = "gn2HtmllbName";
-            this.gn2HtmllbName.Size = new System.Drawing.Size(46, 26);
-            this.gn2HtmllbName.TabIndex = 16;
-            this.gn2HtmllbName.Text = "Tên: ";
             // 
             // guna2ControlBox2
             // 
@@ -441,6 +430,17 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
+            this.lbName.Location = new System.Drawing.Point(6, 3);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(42, 20);
+            this.lbName.TabIndex = 18;
+            this.lbName.Text = "Tên:";
+            // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -459,6 +459,7 @@
             this.Name = "fTableManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -507,11 +508,11 @@
         private Guna.UI2.WinForms.Guna2Button gnbtnCheckout;
         private System.Windows.Forms.Panel panel3;
         private Guna.UI2.WinForms.Guna2ImageButton gnibtnExit;
-        private Guna.UI2.WinForms.Guna2HtmlLabel gn2HtmllbName;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.DataGridView dtgvRe;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbFullname;
+        private System.Windows.Forms.Label lbName;
     }
 }

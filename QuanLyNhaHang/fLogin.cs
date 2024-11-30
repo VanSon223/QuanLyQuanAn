@@ -27,7 +27,7 @@ namespace QuanLyNhaHang
 
             // Gọi API kiểm tra đăng nhập và lấy thông tin người dùng
             Staff loggedInUser = await StaffDAO.Instance.LoginAsync(userName, passWord);
-
+             
             if (loggedInUser != null)
             {
                 // Hiển thị tên đầy đủ của người dùng
@@ -35,6 +35,7 @@ namespace QuanLyNhaHang
 
                 // Mở form quản lý
                 fTableManager f = new fTableManager();
+                f.SetName(loggedInUser.FullName);
                 this.Hide();
                 f.ShowDialog();
                 this.Show();

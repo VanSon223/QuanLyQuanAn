@@ -7,15 +7,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
+
 using System.Windows.Forms;
 
 namespace QuanLyNhaHang
 {
     public partial class fInvoice : Form
     {
-        private object crystalReportViewer;
 
         public fInvoice()
         {
