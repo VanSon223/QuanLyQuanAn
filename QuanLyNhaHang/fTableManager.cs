@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using Newtonsoft.Json;
 using System.Net.Http;
+using Microsoft.Reporting.WinForms;
+
 namespace QuanLyNhaHang
 {
     public partial class fTableManager : Form
@@ -227,6 +229,20 @@ namespace QuanLyNhaHang
                     MessageBox.Show("Thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
     
+                
+
+                // Hiển thị form hóa đơn sau khi thanh toán
+                //decimal totalAmount = (int)currentOrder.TotalAmount;
+                //foreach (ListViewItem item in lsvBill.Items)
+                //{
+                //    totalAmount = decimal.Parse(item.SubItems[3].Text);  // Thành tiền của mỗi món
+                //}
+
+                //// Tạo form hóa đơn
+                //fInvoice invoiceForm = new fInvoice();
+                //invoiceForm.SetInvoiceData(lsvBill,currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount,DateTime.Now);
+                //invoiceForm.Show();
+
                 lsvBill.Items.Clear();
                 txbtotalPrice.Clear();
                 flpTable.Controls.Clear();
@@ -241,34 +257,7 @@ namespace QuanLyNhaHang
             }
         }
 
-        private async void btnSearch_Click(object sender, EventArgs e)
-        {
-            string customerPhone = textBox1.Text.Trim();
-            CustomersDAO customerDAO = new CustomersDAO();
-            List<Customers> customers = await customerDAO.GetCustomersByPhoneNumberAsync(customerPhone);
-
-            lsvKH.Items.Clear();
-
-            // Kiểm tra danh sách khách hàng có kết quả hay không
-            if (customers != null && customers.Count > 0)
-            {
-                // Duyệt qua từng khách hàng trong danh sách
-                foreach (var customer in customers)
-                {
-                    var item = new ListViewItem();
-                    item.Text = customer.Username;  // Hiển thị tên khách hàng
-                    item.Tag = customer;            // Gán đối tượng customer vào Tag
-                    item.SubItems.Add(customer.PhoneNumber);
-                    item.SubItems.Add(customer.Point.ToString());
-                    lsvKH.Items.Add(item);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Customer not found.");
-            }
-        }
-
+       
         private void lsvKH_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lsvKH.SelectedItems.Count > 0)
@@ -336,15 +325,39 @@ namespace QuanLyNhaHang
                 MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-        #endregion
-
         private void btnLoad_Click(object sender, EventArgs e)
         {
             LoadReservations();
         }
+      
+        #endregion
 
-        
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            string customerPhone = textBox1.Text.Trim();
+            CustomersDAO customerDAO = new CustomersDAO();
+            List<Customers> customers = await customerDAO.GetCustomersByPhoneNumberAsync(customerPhone);
+
+            lsvKH.Items.Clear();
+
+            // Kiểm tra danh sách khách hàng có kết quả hay không
+            if (customers != null && customers.Count > 0)
+            {
+                // Duyệt qua từng khách hàng trong danh sách
+                foreach (var customer in customers)
+                {
+                    var item = new ListViewItem();
+                    item.Text = customer.Username;  // Hiển thị tên khách hàng
+                    item.Tag = customer;            // Gán đối tượng customer vào Tag
+                    item.SubItems.Add(customer.PhoneNumber);
+                    item.SubItems.Add(customer.Point.ToString());
+                    lsvKH.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Customer not found.");
+            }
+        }
     }
 }

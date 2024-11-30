@@ -49,9 +49,9 @@
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.gnibtnExit = new Guna.UI2.WinForms.Guna2ImageButton();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.gnbtnInfor = new Guna.UI2.WinForms.Guna2Button();
             this.gnbtnAdmin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lbFullname = new System.Windows.Forms.Label();
             this.gn2HtmllbName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -64,7 +64,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtgvRe = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.lbFullname = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -105,6 +104,7 @@
             this.lsvKH.TabIndex = 11;
             this.lsvKH.UseCompatibleStateImageBehavior = false;
             this.lsvKH.View = System.Windows.Forms.View.Details;
+            this.lsvKH.SelectedIndexChanged += new System.EventHandler(this.lsvKH_SelectedIndexChanged);
             // 
             // lbOrderID
             // 
@@ -189,6 +189,7 @@
             this.btnSearch.Size = new System.Drawing.Size(34, 24);
             this.btnSearch.TabIndex = 12;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel1
             // 
@@ -233,7 +234,6 @@
             this.guna2Panel1.BorderRadius = 12;
             this.guna2Panel1.Controls.Add(this.gnibtnExit);
             this.guna2Panel1.Controls.Add(this.guna2PictureBox1);
-            this.guna2Panel1.Controls.Add(this.gnbtnInfor);
             this.guna2Panel1.Controls.Add(this.gnbtnAdmin);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
@@ -267,23 +267,6 @@
             this.guna2PictureBox1.TabIndex = 2;
             this.guna2PictureBox1.TabStop = false;
             // 
-            // gnbtnInfor
-            // 
-            this.gnbtnInfor.BorderRadius = 12;
-            this.gnbtnInfor.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.gnbtnInfor.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.gnbtnInfor.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.gnbtnInfor.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.gnbtnInfor.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.gnbtnInfor.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gnbtnInfor.ForeColor = System.Drawing.Color.White;
-            this.gnbtnInfor.Location = new System.Drawing.Point(26, 234);
-            this.gnbtnInfor.Name = "gnbtnInfor";
-            this.gnbtnInfor.Size = new System.Drawing.Size(104, 88);
-            this.gnbtnInfor.TabIndex = 1;
-            this.gnbtnInfor.Text = "Infor";
-            this.gnbtnInfor.Click += new System.EventHandler(this.gnbtnInfor_Click);
-            // 
             // gnbtnAdmin
             // 
             this.gnbtnAdmin.BorderRadius = 12;
@@ -313,6 +296,17 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(1185, 29);
             this.guna2Panel2.TabIndex = 14;
+            // 
+            // lbFullname
+            // 
+            this.lbFullname.AutoSize = true;
+            this.lbFullname.BackColor = System.Drawing.Color.LightGray;
+            this.lbFullname.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFullname.ForeColor = System.Drawing.Color.Black;
+            this.lbFullname.Location = new System.Drawing.Point(59, 10);
+            this.lbFullname.Name = "lbFullname";
+            this.lbFullname.Size = new System.Drawing.Size(0, 19);
+            this.lbFullname.TabIndex = 17;
             // 
             // gn2HtmllbName
             // 
@@ -440,24 +434,12 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Image = global::QuanLyNhaHang.Properties.Resources.BGROUND;
             this.btnLoad.Location = new System.Drawing.Point(432, 0);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(23, 23);
             this.btnLoad.TabIndex = 0;
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // lbFullname
-            // 
-            this.lbFullname.AutoSize = true;
-            this.lbFullname.BackColor = System.Drawing.Color.LightGray;
-            this.lbFullname.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFullname.ForeColor = System.Drawing.Color.Black;
-            this.lbFullname.Location = new System.Drawing.Point(59, 10);
-            this.lbFullname.Name = "lbFullname";
-            this.lbFullname.Size = new System.Drawing.Size(0, 19);
-            this.lbFullname.TabIndex = 17;
             // 
             // fTableManager
             // 
@@ -515,7 +497,6 @@
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button gnbtnAdmin;
-        private Guna.UI2.WinForms.Guna2Button gnbtnInfor;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
