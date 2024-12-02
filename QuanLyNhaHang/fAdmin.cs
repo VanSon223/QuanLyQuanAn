@@ -32,7 +32,7 @@ namespace QuanLyNhaHang
 
         async void LoadFoodList()
         {
-            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Menu/List"; // Thay thế bằng URL API của bạn
+            string apiUrl = "https://resmant1111-001-site1.anytempurl.com/Menu/List"; // Thay thế bằng URL API của bạn
 
             using (HttpClient client = new HttpClient())
             {
@@ -63,7 +63,7 @@ namespace QuanLyNhaHang
         }
         async void LoadTableList()
         {
-            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Table/List"; // Thay thế bằng URL API của bạn
+            string apiUrl = "https://resmant1111-001-site1.anytempurl.com/Table/List"; // Thay thế bằng URL API của bạn
 
             using (HttpClient client = new HttpClient())
             {
@@ -94,7 +94,7 @@ namespace QuanLyNhaHang
         }
         async void LoadCustomerList()
         {
-            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Customer/List"; // Thay thế bằng URL API của bạn
+            string apiUrl = "https://resmant1111-001-site1.anytempurl.com/Customer/List"; // Thay thế bằng URL API của bạn
 
             using (HttpClient client = new HttpClient())
             {
@@ -125,7 +125,7 @@ namespace QuanLyNhaHang
         }
         async void LoadStaffList()
         {
-            string apiUrl = "https://resmant1111-001-site1.jtempurl.com/Staff/List"; // Thay thế bằng URL API của bạn
+            string apiUrl = "https://resmant1111-001-site1.anytempurl.com/Staff/List"; // Thay thế bằng URL API của bạn
 
             using (HttpClient client = new HttpClient())
             {

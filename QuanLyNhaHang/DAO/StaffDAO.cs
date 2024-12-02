@@ -22,7 +22,7 @@ namespace QuanLyNhaHang.DAO
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = "https://resmant1111-001-site1.jtempurl.com/staff/List";
+                string url = "https://resmant1111-001-site1.anytempurl.com/staff/List";
 
 
                 HttpResponseMessage response = await client.GetAsync(url);
@@ -45,7 +45,7 @@ namespace QuanLyNhaHang.DAO
         }
         public async Task<Staff> LoginAsync(string userName, string passWord)
         {
-            string url = $"https://resmant1111-001-site1.jtempurl.com/staff/Login?username={userName}&password={passWord}";
+            string url = $"https://resmant1111-001-site1.anytempurl.com/staff/Login?username={userName}&password={passWord}";
 
             using (HttpClient client = new HttpClient())
             {

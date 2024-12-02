@@ -22,7 +22,7 @@ namespace QuanLyNhaHang.DAO
 
         public async Task<List<Orders>> GetListOrderByTableIDAsync()
         {
-            string url = "https://resmant1111-001-site1.jtempurl.com/Order/List";
+            string url = "https://resmant1111-001-site1.anytempurl.com/Order/List";
 
             HttpResponseMessage response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
@@ -76,7 +76,7 @@ namespace QuanLyNhaHang.DAO
         public async Task<bool> UpdateOrderStatusAsync(Orders o )
         {
             
-            string url = $"https://resmant1111-001-site1.jtempurl.com/Order/Update"; 
+            string url = $"https://resmant1111-001-site1.anytempurl.com/Order/Update"; 
             
             string jsonData = JsonConvert.SerializeObject(o);
             var content = new StringContent(jsonData, Encoding.UTF8, "application/json");

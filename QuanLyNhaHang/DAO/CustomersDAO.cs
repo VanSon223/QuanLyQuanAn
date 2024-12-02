@@ -21,7 +21,7 @@ namespace QuanLyNhaHang.DAO
         private static readonly HttpClient client = new HttpClient();
         public async Task<List<Customers>> GetCustomersByPhoneNumberAsync(string phoneNumber)
         {
-            string url = "https://resmant1111-001-site1.jtempurl.com/Customer/List";
+            string url = "https://resmant1111-001-site1.anytempurl.com/Customer/List";
 
             try
             {

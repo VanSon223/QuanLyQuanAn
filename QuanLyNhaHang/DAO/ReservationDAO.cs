@@ -22,7 +22,7 @@ namespace QuanLyNhaHang.DAO
         // Phương thức để lấy danh sách bàn từ API
         public async Task<List<Reservation>> GetReservationsFromApiAsync()
         {
-            string url = "https://resmant1111-001-site1.jtempurl.com/Reservation/List"; // Thay URL API
+            string url = "https://resmant1111-001-site1.anytempurl.com/Reservation/List"; // Thay URL API
 
             try
             {

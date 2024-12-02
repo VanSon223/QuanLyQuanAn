@@ -25,7 +25,7 @@ namespace QuanLyNhaHang.DAO
         // Phương thức để lấy danh sách bàn từ API
         public async Task<List<Table>> GetTablesFromApiAsync()
         {
-            string url = "https://resmant1111-001-site1.jtempurl.com/Table/List";
+            string url = "https://resmant1111-001-site1.anytempurl.com/Table/List";
 
             try
             {

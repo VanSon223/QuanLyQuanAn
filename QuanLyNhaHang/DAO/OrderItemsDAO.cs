@@ -16,7 +16,7 @@ namespace QuanLyNhaHang.DAO
 
         public async Task<List<OrderItem>> GetListOrderItemByOrderIDAsync(int OrderID)
         {
-            string url = "https://resmant1111-001-site1.jtempurl.com/OrderItem/List";
+            string url = "https://resmant1111-001-site1.anytempurl.com/OrderItem/List";
 
             try
             {
