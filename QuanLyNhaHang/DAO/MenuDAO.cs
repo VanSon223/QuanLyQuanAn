@@ -13,7 +13,7 @@ namespace QuanLyNhaHang.DAO
 
         public async Task<List<MenuItem>> GetMenuListAsync()
         {
-            string url = "https://resmant1111-001-site1.anytempurl.com/Menu/List";
+            string url = "https://resmant11111-001-site1.anytempurl.com/Menu/List";
             List<MenuItem> menuItems = null;
 
             try

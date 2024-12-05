@@ -27,7 +27,6 @@ namespace QuanLyNhaHang
             lblOrderID.Text = "Mã Order:" + orderID;
             lblTableName.Text = "Bàn: " + tableName;
             lblCustomerPhone.Text = "SĐT: " + customerPhone;
-            lblTotalAmount.Text = "Tổng tiền: " + totalAmount.ToString("C0", vietnamCulture);
             lblInvoiceDate.Text = "Ngày: " + invoiceDate.ToString("dd/MM/yyyy HH:mm:ss");
             // Thêm các mục từ ListView lvBill vào ListView trong fInvoice
             foreach (ListViewItem item in lsvBill.Items)
@@ -39,6 +38,7 @@ namespace QuanLyNhaHang
                 newItem.SubItems.Add(itemTotalPrice.ToString("C0", vietnamCulture));
                 lvInvoiceItems.Items.Add(newItem);
             }
+            lblTotalAmount.Text = "Tổng tiền: " + totalAmount.ToString("C0", vietnamCulture);
         }
 
 

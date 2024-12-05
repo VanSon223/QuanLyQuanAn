@@ -25,7 +25,7 @@ namespace QuanLyNhaHang.DAO
         // Phương thức để lấy danh sách bàn từ API
         public async Task<List<Table>> GetTablesFromApiAsync()
         {
-            string url = "https://resmant1111-001-site1.anytempurl.com/Table/List";
+            string url = "https://resmant11111-001-site1.anytempurl.com/Table/List";
 
             try
             {
@@ -52,7 +52,7 @@ namespace QuanLyNhaHang.DAO
         // Phương thức để cập nhật trạng thái bàn
         public async Task<bool> UpdateTableStatusAsync(int tableID, string status)
         {
-            string url = $"https://resmant1111-001-site1.jtempurl.com/Table/UpdateStatus?tableID={tableID}&status={status}";
+            string url = $"https://resmant11111-001-site1.anytempurl.com/Table/UpdateStatus?tableID={tableID}&status={status}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -77,7 +77,7 @@ namespace QuanLyNhaHang.DAO
         // Phương thức để lấy bàn theo ID
         public async Task<Table> GetTableByIDAsync(int tableID)
         {
-            string url = $"https://resmant1111-001-site1.jtempurl.com/Table/GetById?id={tableID}";
+            string url = $"https://resmant11111-001-site1.anytempurl.com/Table/GetById?id={tableID}";
 
             try
             {

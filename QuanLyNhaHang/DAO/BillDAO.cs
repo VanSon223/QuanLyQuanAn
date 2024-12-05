@@ -21,7 +21,7 @@ namespace QuanLyNhaHang.DAO
 
         public async Task<int> GetUncheckBillIDByTableIDAsync(int id)
         {
-            string url = $"https://resmant1111-001-site1.anytempurl.com/Order/List"; // Lấy danh sách đơn hàng
+            string url = $"https://resmant11111-001-site1.anytempurl.com/Order/List"; // Lấy danh sách đơn hàng
 
             HttpResponseMessage response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)

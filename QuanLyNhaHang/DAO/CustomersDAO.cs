@@ -21,7 +21,7 @@ namespace QuanLyNhaHang.DAO
         private static readonly HttpClient client = new HttpClient();
         public async Task<List<Customers>> GetCustomersByPhoneNumberAsync(string phoneNumber)
         {
-            string url = "https://resmant1111-001-site1.anytempurl.com/Customer/List";
+            string url = "https://resmant11111-001-site1.anytempurl.com/Customer/List";
 
             try
             {
@@ -49,7 +49,7 @@ namespace QuanLyNhaHang.DAO
         public async Task<bool> UpdateCustomerPointAsync(string phoneNumber, int point, string username)
         {
             // Tạo URL với tham số phone và point
-            string url = $"https://resmant1111-001-site1.jtempurl.com/Customer/UpdatePoint?phone={phoneNumber}&point={point}&username={username}";
+            string url = $"https://resmant11111-001-site1.anytempurl.com/Customer/UpdatePoint?phone={phoneNumber}&point={point}&username={username}";
         
 
             using (HttpClient client = new HttpClient())
