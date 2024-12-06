@@ -227,10 +227,10 @@ namespace QuanLyNhaHang
 
 
                 //Hiển thị form hóa đơn sau khi thanh toán
-                decimal totalAmount = (int)currentOrder.TotalAmount;
+                decimal totalAmount = 0;
                 foreach (ListViewItem item in lsvBill.Items)
                 {
-                    totalAmount = decimal.Parse(item.SubItems[3].Text);  // Thành tiền của mỗi món
+                    totalAmount += decimal.Parse(item.SubItems[3].Text);  // Thành tiền của mỗi món
                 }
 
                 // Tạo form hóa đơn
@@ -251,8 +251,6 @@ namespace QuanLyNhaHang
                 e.Handled = true;
             }
         }
-
-       
         private void lsvKH_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lsvKH.SelectedItems.Count > 0)
@@ -324,9 +322,6 @@ namespace QuanLyNhaHang
         {
             LoadReservations();
         }
-      
-        #endregion
-
         private async void btnSearch_Click(object sender, EventArgs e)
         {
             string customerPhone = textBox1.Text.Trim();
@@ -354,7 +349,6 @@ namespace QuanLyNhaHang
                 MessageBox.Show("Customer not found.");
             }
         }
-
        public void SetName(string fullName)
         { 
                 lbName.Text = "Tên nhân viên:" + fullName;
