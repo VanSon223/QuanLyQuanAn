@@ -19,7 +19,7 @@ namespace QuanLyNhaHang.DTO
         public Staff() { }
 
         [JsonProperty("staffId")]
-        public int StaffID { get; set; }
+        public  int StaffID { get; set; }
 
         [JsonProperty("username")]
         public string Username { get; set; }

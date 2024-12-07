@@ -20,8 +20,12 @@ namespace QuanLyNhaHang
 {
     public partial class fTableManager : Form
     {
-        public fTableManager()
+        private int loggedInStaffID;
+        private int loggedInShiftID;
+        public fTableManager(int staffID, int shiftID)
         {
+            loggedInStaffID = staffID;
+            loggedInShiftID = shiftID;
             InitializeComponent();
             LoadTableList();
             LoadReservations();
@@ -141,8 +145,28 @@ namespace QuanLyNhaHang
 
         
 
-        private void gnibtnExit_Click(object sender, EventArgs e)
+        private async void gnibtnExit_Click(object sender, EventArgs e)
         {
+            if (loggedInStaffID > 0 && loggedInShiftID > 0)
+            {
+                // Cập nhật thời gian kết thúc khi thoát
+                bool isEndTimeUpdated = await ShiftDAO.Instance.UpdateShiftAsync(loggedInShiftID, DateTime.Now);
+
+                if (!isEndTimeUpdated)
+                {
+                    MessageBox.Show("Không thể ghi nhận thời gian kết thúc!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Thời gian kết thúc đã được cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa có ca làm việc hoặc nhân viên chưa đăng nhập.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            // Đóng form sau khi xử lý
             this.Close();
         }
 
@@ -349,9 +373,14 @@ namespace QuanLyNhaHang
                 MessageBox.Show("Customer not found.");
             }
         }
-       public void SetName(string fullName)
-        { 
-                lbName.Text = "Tên nhân viên:" + fullName;
+        public void SetName(string fullName)
+        {
+            lbName.Text = "Tên nhân viên:" + fullName;
         }
+        
+       
+        #endregion
+
+
     }
 }

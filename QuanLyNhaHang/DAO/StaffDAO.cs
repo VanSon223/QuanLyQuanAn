@@ -43,6 +43,25 @@ namespace QuanLyNhaHang.DAO
                 }
             }
         }
+        public async Task<int?> GetStaffIDByCredentialsAsync(string username, string password)
+        {
+            List<Staff> staffList = await GetAllStaffAsync();
+
+            if (staffList != null)
+            {
+                // Tìm nhân viên có username và password trùng khớp
+                Staff matchingStaff = staffList.FirstOrDefault(staff =>
+                    staff.Username == username && staff.Password == password);
+
+                if (matchingStaff != null)
+                {
+                    return matchingStaff.StaffID; // Trả về ID nếu tìm thấy
+                }
+            }
+
+            return null; // Trả về null nếu không tìm thấy
+        }
+
         public async Task<Staff> LoginAsync(string userName, string passWord)
         {
             string url = $"https://resmant11111-001-site1.anytempurl.com/staff/Login?username={userName}&password={passWord}";
@@ -51,21 +70,26 @@ namespace QuanLyNhaHang.DAO
             {
                 try
                 {
-                    // Gửi yêu cầu POST tới API
                     HttpResponseMessage response = await client.PostAsync(url, null);
 
-                    // Nếu đăng nhập thành công (status code 200)
                     if (response.IsSuccessStatusCode)
                     {
                         string json = await response.Content.ReadAsStringAsync();
-
-                        // Giả sử API trả về thông tin Staff dưới dạng JSON
                         Staff loggedInStaff = JsonConvert.DeserializeObject<Staff>(json);
-                        return loggedInStaff;
+
+                        if (loggedInStaff != null && loggedInStaff.StaffID > 0)
+                        {
+                            return loggedInStaff; // Trả về đối tượng nhân viên nếu có ID
+                        }
+                        else
+                        {
+                            Console.WriteLine("API không trả về StaffID hoặc thông tin không đầy đủ.");
+                            return null;
+                        }
                     }
                     else
                     {
-                        // Đăng nhập thất bại
+                        Console.WriteLine($"Đăng nhập thất bại: {response.StatusCode}");
                         return null;
                     }
                 }

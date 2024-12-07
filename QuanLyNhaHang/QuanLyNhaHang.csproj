@@ -198,6 +198,7 @@
     <Compile Include="DAO\OrderItemsDAO.cs" />
     <Compile Include="DAO\OrdersDAO.cs" />
     <Compile Include="DAO\ReservationDAO.cs" />
+    <Compile Include="DAO\ShiftDAO.cs" />
     <Compile Include="DAO\StaffDAO.cs" />
     <Compile Include="DAO\TableDAO.cs" />
     <Compile Include="DTO\Account.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="DTO\OrderItem.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\Reservation.cs" />
+    <Compile Include="DTO\Shifts.cs" />
     <Compile Include="DTO\Staff.cs" />
     <Compile Include="DTO\Table.cs" />
     <Compile Include="fAdmin.cs">
