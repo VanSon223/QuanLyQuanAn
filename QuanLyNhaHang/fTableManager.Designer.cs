@@ -51,6 +51,7 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.gnbtnAdmin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lbName = new System.Windows.Forms.Label();
             this.lbFullname = new System.Windows.Forms.Label();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -63,7 +64,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtgvRe = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.lbName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -297,6 +297,17 @@
             this.guna2Panel2.Size = new System.Drawing.Size(1185, 29);
             this.guna2Panel2.TabIndex = 14;
             // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
+            this.lbName.Location = new System.Drawing.Point(6, 3);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(42, 20);
+            this.lbName.TabIndex = 18;
+            this.lbName.Text = "Tên:";
+            // 
             // lbFullname
             // 
             this.lbFullname.AutoSize = true;
@@ -333,6 +344,7 @@
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(50, 30);
             this.guna2ControlBox1.TabIndex = 0;
+            this.guna2ControlBox1.Click += new System.EventHandler(this.guna2ControlBox1_Click);
             // 
             // guna2Elipse1
             // 
@@ -430,17 +442,6 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // lbName
-            // 
-            this.lbName.AutoSize = true;
-            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.lbName.Location = new System.Drawing.Point(6, 3);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(42, 20);
-            this.lbName.TabIndex = 18;
-            this.lbName.Text = "Tên:";
-            // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -459,7 +460,6 @@
             this.Name = "fTableManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

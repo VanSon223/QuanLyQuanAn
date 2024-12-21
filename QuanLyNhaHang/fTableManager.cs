@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -21,7 +22,7 @@ namespace QuanLyNhaHang
             loggedInShiftID = shiftID;
             InitializeComponent();
             LoadTableList();
-            LoadReservations();
+            //LoadReservations();
             
         }
         #region Method
@@ -136,9 +137,9 @@ namespace QuanLyNhaHang
             f.ShowDialog();
         }
 
-        
 
-        private async void gnibtnExit_Click(object sender, EventArgs e)
+
+        private async Task HandleExitAsync()
         {
             if (loggedInStaffID > 0 && loggedInShiftID > 0)
             {
@@ -163,6 +164,17 @@ namespace QuanLyNhaHang
             this.Close();
         }
 
+        // Sự kiện nút gnibtnExit
+        private async void gnibtnExit_Click(object sender, EventArgs e)
+        {
+            await HandleExitAsync();
+        }
+
+        // Sự kiện nút guna2ControlBox1 (nút X)
+        private async void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+            await HandleExitAsync();
+        }
         private async void gnbtnCheckout_Click(object sender, EventArgs e)
         {
             // Kiểm tra xem đã có bàn nào được chọn chưa
@@ -335,8 +347,9 @@ namespace QuanLyNhaHang
                 MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnLoad_Click(object sender, EventArgs e)
+        private async void btnLoad_Click(object sender, EventArgs e)
         {
+            await Task.Delay(1000);
             LoadReservations();
         }
         private async void btnSearch_Click(object sender, EventArgs e)
@@ -370,10 +383,11 @@ namespace QuanLyNhaHang
         {
             lbName.Text = "Tên nhân viên:" + fullName;
         }
-        
+
        
+
         #endregion
 
-
+       
     }
 }
