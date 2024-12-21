@@ -222,7 +222,7 @@ namespace QuanLyNhaHang
                 {
                     string username = selectedCustomer.Username;
                     string phoneNumber = selectedCustomer.PhoneNumber;
-                    int newPoints = selectedCustomer.Point + (int)(currentOrder.TotalAmount.Value / 100000) * 10; // Giả sử điểm là 10% tổng hóa đơn
+                    int newPoints = selectedCustomer.Point + (int)(currentOrder.TotalAmount.Value / 100000) * 10; //  điểm là 10% tổng hóa đơn
 
 
                     CustomersDAO customerDAO = new CustomersDAO();

@@ -42,7 +42,7 @@ namespace QuanLyNhaHang
                     if (shift != null)
                     {
                         
-                        MessageBox.Show($"Xin chào, {loggedInUser.FullName},{loggedInStaffID},{shift.ShiftID}! ", "Đăng nhập thành công");
+                        MessageBox.Show($"Xin chào, {loggedInUser.FullName},{shift.ShiftID}! ", "Đăng nhập thành công");
                         loggedInShiftID = shift.ShiftID;
                         //ShiftID của bạn: { shift.ShiftID}
                         // Lưu ShiftID để sử dụng khi thoát
