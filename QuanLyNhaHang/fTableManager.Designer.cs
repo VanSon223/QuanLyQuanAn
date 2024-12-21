@@ -64,6 +64,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtgvRe = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.lsvVoucher = new System.Windows.Forms.ListView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -82,8 +87,8 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Số điện thoại";
-            this.columnHeader6.Width = 95;
+            this.columnHeader6.Text = "ID ";
+            this.columnHeader6.Width = 82;
             // 
             // columnHeader5
             // 
@@ -442,12 +447,51 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // lsvVoucher
+            // 
+            this.lsvVoucher.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.lsvVoucher.HideSelection = false;
+            this.lsvVoucher.Location = new System.Drawing.Point(773, 450);
+            this.lsvVoucher.Name = "lsvVoucher";
+            this.lsvVoucher.Size = new System.Drawing.Size(271, 171);
+            this.lsvVoucher.TabIndex = 18;
+            this.lsvVoucher.UseCompatibleStateImageBehavior = false;
+            this.lsvVoucher.View = System.Windows.Forms.View.Details;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
+            this.label4.Location = new System.Drawing.Point(910, 425);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 20);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Ví voucher";
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "ID";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "SL";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "%Giảm";
+            // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1340, 720);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lsvVoucher);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -475,6 +519,7 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRe)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -514,5 +559,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbFullname;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView lsvVoucher;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

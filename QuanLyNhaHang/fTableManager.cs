@@ -280,7 +280,7 @@ namespace QuanLyNhaHang
                 e.Handled = true;
             }
         }
-        private void lsvKH_SelectedIndexChanged(object sender, EventArgs e)
+        private async void lsvKH_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lsvKH.SelectedItems.Count > 0)
             {
@@ -293,6 +293,25 @@ namespace QuanLyNhaHang
                                 "Thông báo",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
+                // Lấy danh sách VoucherWallet
+                VoucherWalletDAO voucherWalletDAO = new VoucherWalletDAO();
+                var voucherWallets = await voucherWalletDAO.GetVoucherWalletsByCustomerIdAsync(selectedCustomer.CustomerId);
+
+                // Lấy thông tin voucherType cho mỗi voucherWallet
+                VoucherDAO voucherDAO = new VoucherDAO();
+                lsvVoucher.Items.Clear();
+
+                foreach (var voucherWallet in voucherWallets)
+                {
+                    // Lấy voucherType từ API Voucher/List
+                    int voucherType = await voucherDAO.GetVoucherTypeByIdAsync(voucherWallet.VoucherId);
+
+                    // Thêm vào ListView với cột VoucherType
+                    var item = new ListViewItem(voucherWallet.VoucherId.ToString());
+                    item.SubItems.Add(voucherWallet.Quantity.ToString());
+                    item.SubItems.Add(voucherType != -1 ? voucherType.ToString() : "N/A");
+                    lsvVoucher.Items.Add(item);
+                }
             }
         }
         async void LoadReservations()
@@ -369,7 +388,7 @@ namespace QuanLyNhaHang
                     var item = new ListViewItem();
                     item.Text = customer.Username;  // Hiển thị tên khách hàng
                     item.Tag = customer;            // Gán đối tượng customer vào Tag
-                    item.SubItems.Add(customer.PhoneNumber);
+                    item.SubItems.Add(customer.CustomerId.ToString());
                     item.SubItems.Add(customer.Point.ToString());
                     lsvKH.Items.Add(item);
                 }
@@ -384,7 +403,8 @@ namespace QuanLyNhaHang
             lbName.Text = "Tên nhân viên:" + fullName;
         }
 
-       
+
+
 
         #endregion
 
