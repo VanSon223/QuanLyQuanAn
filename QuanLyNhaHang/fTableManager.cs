@@ -490,6 +490,5 @@ namespace QuanLyNhaHang
         #endregion
 
 
-
     }
 }
