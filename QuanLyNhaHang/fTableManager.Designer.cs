@@ -65,10 +65,10 @@
             this.dtgvRe = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
             this.lsvVoucher = new System.Windows.Forms.ListView();
-            this.label4 = new System.Windows.Forms.Label();
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
@@ -460,17 +460,7 @@
             this.lsvVoucher.TabIndex = 18;
             this.lsvVoucher.UseCompatibleStateImageBehavior = false;
             this.lsvVoucher.View = System.Windows.Forms.View.Details;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.label4.Location = new System.Drawing.Point(910, 425);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 20);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Ví voucher";
+            this.lsvVoucher.SelectedIndexChanged += new System.EventHandler(this.lsvVoucher_SelectedIndexChanged);
             // 
             // columnHeader8
             // 
@@ -483,6 +473,17 @@
             // columnHeader10
             // 
             this.columnHeader10.Text = "%Giảm";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
+            this.label4.Location = new System.Drawing.Point(910, 425);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 20);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Ví voucher";
             // 
             // fTableManager
             // 

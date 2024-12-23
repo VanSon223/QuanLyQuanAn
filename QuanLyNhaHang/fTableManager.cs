@@ -124,6 +124,7 @@ namespace QuanLyNhaHang
         #region Event
         private int currentTableID = -1;
         private Customers selectedCustomer;
+        private Voucher selectedVoucher;
         private void btn_Click(object sender, EventArgs e)
         {
             lsvBill.Items.Clear();
@@ -256,16 +257,31 @@ namespace QuanLyNhaHang
 
 
                 //Hiển thị form hóa đơn sau khi thanh toán
+                // Kiểm tra và lấy tổng tiền giảm
                 decimal totalAmount = 0;
+                decimal discountAmount = 0; // Biến lưu trữ số tiền giảm
+
+                // Tính tổng tiền gốc trước giảm giá
                 foreach (ListViewItem item in lsvBill.Items)
                 {
                     totalAmount += decimal.Parse(item.SubItems[3].Text);  // Thành tiền của mỗi món
                 }
 
+                // Nếu có giảm giá, tính tiền sau giảm
+                decimal originalTotal = totalAmount;  // Giả sử tổng tiền gốc bằng tổng tiền ban đầu
+                if (decimal.TryParse(txbtotalPrice.Text, NumberStyles.Currency, CultureInfo.CreateSpecificCulture("vi-VN"), out decimal totalAfterDiscount))
+                {
+                    discountAmount = originalTotal - totalAfterDiscount;  // Số tiền giảm
+                    totalAmount = totalAfterDiscount;  // Tổng tiền sau giảm
+                }
+
+                // Nếu không có giảm giá, totalAmount sẽ giữ nguyên giá trị gốc (không thay đổi)
+
                 // Tạo form hóa đơn
                 fInvoice invoiceForm = new fInvoice();
                 invoiceForm.SetInvoiceData(lsvBill, currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount, DateTime.Now, discountAmount);
                 invoiceForm.Show();
+
 
 
                 lsvBill.Items.Clear();
@@ -404,73 +420,76 @@ namespace QuanLyNhaHang
             lbName.Text = "Tên nhân viên:" + fullName;
         }
 
-        private void lsvVoucher_SelectedIndexChanged(object sender, EventArgs e)
+        private async void lsvVoucher_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Kiểm tra xem có mục nào được chọn không
-            if (lsvVoucher.SelectedItems.Count > 0)
+            if (lsvVoucher.SelectedItems.Count == 0)
+                return; // Thoát sớm nếu không có mục nào được chọn
+
+            ListViewItem selectedItem = lsvVoucher.SelectedItems[0];
+
+            // Lấy giá trị giảm giá từ cột thứ 3
+            if (selectedItem.SubItems.Count > 2 && int.TryParse(selectedItem.SubItems[2].Text, out int discountPercent))
             {
-                // Lấy mục được chọn
-                ListViewItem selectedItem = lsvVoucher.SelectedItems[0];
+                // Hiển thị hộp thoại xác nhận
+                DialogResult result = MessageBox.Show(
+                    "Bạn có muốn áp dụng giảm giá không?",
+                    "Xác nhận giảm giá",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                // Kiểm tra nếu cột thứ 3 được chọn (chỉ số cột là 2)
-                if (selectedItem.Selected && selectedItem.SubItems.Count > 2)
+                if (result != DialogResult.Yes)
+                    return; // Nếu người dùng không đồng ý, thoát sớm
+
+                // Lấy tổng tiền từ TextBox
+                if (decimal.TryParse(txbtotalPrice.Text, NumberStyles.Currency, CultureInfo.CreateSpecificCulture("vi-VN"), out decimal originalTotal))
                 {
-                    // Lấy giá trị của cột thứ 3 (giảm giá)
-                    string discountText = selectedItem.SubItems[2].Text;
+                    // Tính tổng tiền sau khi giảm
+                    decimal discountAmount = originalTotal * (1 - discountPercent / 100m);
+                    txbtotalPrice.Text = discountAmount.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
 
-                    // Kiểm tra nếu cột này có giá trị giảm giá (ví dụ "30")
-                    int discountPercent;
-                    if (int.TryParse(discountText, out discountPercent))
-                    {
-                        // Hiển thị hộp thoại xác nhận cho người dùng
-                        DialogResult result = MessageBox.Show(
-                            "Bạn có muốn áp dụng giảm giá không?",
-                            "Xác nhận giảm giá",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question);
+                    // Hiển thị thông báo cho người dùng
+                    MessageBox.Show(
+                        $"Tổng tiền sau khi giảm: {discountAmount.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"))}",
+                        "Thông báo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
 
-                        // Nếu người dùng chọn "Có", tính lại tổng tiền
-                        if (result == DialogResult.Yes)
-                        {
-                            // Lấy tổng tiền từ TextBox (cần chuyển đổi sang decimal)
-                            string originalTotalText = txbtotalPrice.Text;
+                    // Cập nhật số lượng voucher và gọi API
+                    //if (int.TryParse(selectedItem.SubItems[1].Text, out int currentQuantity) && currentQuantity > 0)
+                    //{
+                    //    int newQuantity = currentQuantity - 1;
+                    //    selectedItem.SubItems[1].Text = newQuantity.ToString(); // Cập nhật giao diện
 
-                            decimal originalTotal;
-                            //MessageBox.Show("Original Total Text: " + originalTotalText, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            if (decimal.TryParse(originalTotalText, NumberStyles.Currency, CultureInfo.CreateSpecificCulture("vi-VN"), out originalTotal)) // Chuyển đổi tổng tiền sang decimal
-                            {
-                                // Tính tổng tiền sau khi giảm
-                                decimal discountAmount = originalTotal * (1 - discountPercent / 100m);
-
-                                // Cập nhật tổng tiền và giao diện người dùng
-                                txbtotalPrice.Text = discountAmount.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
-
-                                // Hiển thị thông báo cho người dùng
-                                MessageBox.Show($"Tổng tiền sau khi giảm: {discountAmount.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"))}",
-                                                "Thông báo",
-                                                MessageBoxButtons.OK,
-                                                MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Không thể chuyển đổi tổng tiền sang số.",
-                                                "Lỗi",
-                                                MessageBoxButtons.OK,
-                                                MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-      
+                    //    // Gọi API cập nhật số lượng
+                    //    if (int.TryParse(selectedItem.SubItems[0].Text, out int voucherID)) // Lấy voucherID từ cột đầu tiên
+                    //    {
+                    //        await UpdateVoucherAsync(voucherID, newQuantity);
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Không thể cập nhật số lượng voucher.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                 }
+                else
+                {
+                    MessageBox.Show("Tổng tiền không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Thông tin giảm giá không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
 
 
+
         #endregion
 
-       
+
+
     }
 }

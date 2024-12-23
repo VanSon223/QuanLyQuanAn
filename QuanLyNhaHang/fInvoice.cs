@@ -20,7 +20,7 @@ namespace QuanLyNhaHang
             InitializeComponent();
         }
 
-        public void SetInvoiceData(ListView lsvBill, int orderID, string tableName, string customerPhone, decimal totalAmount, DateTime invoiceDate)
+        public void SetInvoiceData(ListView lsvBill, int orderID, string tableName, string customerPhone, decimal totalAmount, DateTime invoiceDate, decimal? discountAmount)
         {
             CultureInfo vietnamCulture = CultureInfo.CreateSpecificCulture("vi-VN");
             // Hiển thị thông tin lên các label
@@ -38,7 +38,15 @@ namespace QuanLyNhaHang
                 newItem.SubItems.Add(itemTotalPrice.ToString("C0", vietnamCulture));
                 lvInvoiceItems.Items.Add(newItem);
             }
-            lblTotalAmount.Text = "Tổng tiền: " + totalAmount.ToString("C0", vietnamCulture);
+            // Hiển thị tổng tiền
+            if (discountAmount.HasValue && discountAmount.Value > 0)  // Kiểm tra xem có tổng tiền đã giảm hay không
+            {
+                lblTotalAmount.Text = "Tổng tiền 1: " + discountAmount.Value.ToString("C0", vietnamCulture);
+            }
+            else
+            {
+                lblTotalAmount.Text = "Tổng tiền: " + totalAmount.ToString("C0", vietnamCulture);
+            }
         }
 
 
