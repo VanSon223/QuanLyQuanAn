@@ -264,8 +264,9 @@ namespace QuanLyNhaHang
 
                 // Tạo form hóa đơn
                 fInvoice invoiceForm = new fInvoice();
-                invoiceForm.SetInvoiceData(lsvBill, currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount, DateTime.Now);
+                invoiceForm.SetInvoiceData(lsvBill, currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount, DateTime.Now, discountAmount);
                 invoiceForm.Show();
+
 
                 lsvBill.Items.Clear();
                 txbtotalPrice.Clear();
@@ -401,6 +402,68 @@ namespace QuanLyNhaHang
         public void SetName(string fullName)
         {
             lbName.Text = "Tên nhân viên:" + fullName;
+        }
+
+        private void lsvVoucher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra xem có mục nào được chọn không
+            if (lsvVoucher.SelectedItems.Count > 0)
+            {
+                // Lấy mục được chọn
+                ListViewItem selectedItem = lsvVoucher.SelectedItems[0];
+
+                // Kiểm tra nếu cột thứ 3 được chọn (chỉ số cột là 2)
+                if (selectedItem.Selected && selectedItem.SubItems.Count > 2)
+                {
+                    // Lấy giá trị của cột thứ 3 (giảm giá)
+                    string discountText = selectedItem.SubItems[2].Text;
+
+                    // Kiểm tra nếu cột này có giá trị giảm giá (ví dụ "30")
+                    int discountPercent;
+                    if (int.TryParse(discountText, out discountPercent))
+                    {
+                        // Hiển thị hộp thoại xác nhận cho người dùng
+                        DialogResult result = MessageBox.Show(
+                            "Bạn có muốn áp dụng giảm giá không?",
+                            "Xác nhận giảm giá",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        // Nếu người dùng chọn "Có", tính lại tổng tiền
+                        if (result == DialogResult.Yes)
+                        {
+                            // Lấy tổng tiền từ TextBox (cần chuyển đổi sang decimal)
+                            string originalTotalText = txbtotalPrice.Text;
+
+                            decimal originalTotal;
+                            //MessageBox.Show("Original Total Text: " + originalTotalText, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            if (decimal.TryParse(originalTotalText, NumberStyles.Currency, CultureInfo.CreateSpecificCulture("vi-VN"), out originalTotal)) // Chuyển đổi tổng tiền sang decimal
+                            {
+                                // Tính tổng tiền sau khi giảm
+                                decimal discountAmount = originalTotal * (1 - discountPercent / 100m);
+
+                                // Cập nhật tổng tiền và giao diện người dùng
+                                txbtotalPrice.Text = discountAmount.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"));
+
+                                // Hiển thị thông báo cho người dùng
+                                MessageBox.Show($"Tổng tiền sau khi giảm: {discountAmount.ToString("C", CultureInfo.CreateSpecificCulture("vi-VN"))}",
+                                                "Thông báo",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không thể chuyển đổi tổng tiền sang số.",
+                                                "Lỗi",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+      
+                }
+            }
         }
 
 
