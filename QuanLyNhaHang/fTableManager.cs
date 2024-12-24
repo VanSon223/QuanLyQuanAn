@@ -279,7 +279,7 @@ namespace QuanLyNhaHang
 
                 // Tạo form hóa đơn
                 fInvoice invoiceForm = new fInvoice();
-                invoiceForm.SetInvoiceData(lsvBill, currentOrder.OrderID, "Bàn " + currentTableID, textBox1.Text, totalAmount, DateTime.Now, discountAmount);
+                invoiceForm.SetInvoiceData(lsvBill, currentOrder.OrderID, "" + currentTableID, textBox1.Text, totalAmount, DateTime.Now, discountAmount);
                 invoiceForm.Show();
 
 
@@ -484,8 +484,31 @@ namespace QuanLyNhaHang
         }
 
 
+        private void gnbtnCheck_Click(object sender, EventArgs e)
+        {
+            plLich.Visible = true;
+            guna2Panel3.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            plLich.Visible = false;   
+        }
 
 
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            guna2Panel3.Visible = true;
+            flpTable.Visible = true;
+            button2.Visible = true;
+            plLich.Visible = false;
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            flpTable.Visible = false;
+            button2.Visible = false;
+
+        }
 
         #endregion
 
