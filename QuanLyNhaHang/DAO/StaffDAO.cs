@@ -53,14 +53,6 @@ namespace QuanLyNhaHang.DAO
         //        Staff matchingStaff = staffList.FirstOrDefault(staff =>
         //            staff.Username == username && staff.Password == password);
 
-        //        if (matchingStaff != null)
-        //        {
-        //            return matchingStaff.StaffID; // Trả về ID nếu tìm thấy
-        //        }
-        //    }
-
-        //    return null; // Trả về null nếu không tìm thấy
-        //}
 
         public async Task<Staff> LoginAsync(string userName, string passWord)
         {
