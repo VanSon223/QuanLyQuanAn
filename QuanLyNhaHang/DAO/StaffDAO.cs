@@ -43,17 +43,6 @@ namespace QuanLyNhaHang.DAO
                 }
             }
         }
-        //public async Task<int?> GetStaffIDByCredentialsAsync(string username, string password)
-        //{
-        //    List<Staff> staffList = await GetAllStaffAsync();
-
-        //    if (staffList != null)
-        //    {
-        //        // Tìm nhân viên có username và password trùng khớp
-        //        Staff matchingStaff = staffList.FirstOrDefault(staff =>
-        //            staff.Username == username && staff.Password == password);
-
-
         public async Task<Staff> LoginAsync(string userName, string passWord)
         {
             string url = $"https://resmant11111-001-site1.anytempurl.com/staff/Login?username={userName}&password={passWord}";
