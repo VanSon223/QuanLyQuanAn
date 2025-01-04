@@ -44,9 +44,19 @@ namespace QuanLyNhaHang
                     case "Available":
                         btn.BackColor = Color.Aqua;
                         break;
+                    case "Blocked":
+                        btn.BackColor = Color.Black;
+                        break;
+                    case "Reserved":
+                        btn.BackColor = Color.LightGray; 
+                        break;
+                    case "Occupied":
+                        btn.BackColor = Color.IndianRed; 
+                        break;
                     default:
                         btn.BackColor = Color.LightPink;
                         break;
+
                 }
 
                 flpTable.Controls.Add(btn);
