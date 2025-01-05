@@ -223,10 +223,6 @@ namespace QuanLyNhaHang
                 // Gửi IDOrder và IDCustomer lên API
                 int customerId = selectedCustomer.CustomerId; // Lấy ID của khách hàng đã chọn
                 int orderId = currentOrder.OrderID; // Lấy ID của đơn hàng
-                MessageBox.Show($"Customer ID: {customerId}\nOrder ID: {orderId}",
-                "Thông tin ID",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
                 bool isUpdated = await orderDAO.UpdateCustomerIDAsync(orderId, customerId);
                 if (!isUpdated)
                 {
