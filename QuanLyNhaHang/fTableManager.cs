@@ -530,8 +530,14 @@ namespace QuanLyNhaHang
 
         }
 
+
         #endregion
 
-
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            plLich.Visible = false;
+            flpTable.Visible = false;
+            button2.Visible=false;
+        }
     }
 }
