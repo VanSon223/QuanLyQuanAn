@@ -220,9 +220,21 @@ namespace QuanLyNhaHang
                     MessageBox.Show("Cập nhật trạng thái đơn hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                // Gửi IDOrder và IDCustomer lên API
+                int customerId = selectedCustomer.CustomerId; // Lấy ID của khách hàng đã chọn
+                int orderId = currentOrder.OrderID; // Lấy ID của đơn hàng
+                MessageBox.Show($"Customer ID: {customerId}\nOrder ID: {orderId}",
+                "Thông tin ID",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+                bool isUpdated = await orderDAO.UpdateCustomerIDAsync(orderId, customerId);
+                if (!isUpdated)
+                {
+                    MessageBox.Show("Cập nhật thông tin khách hàng và đơn hàng không thành công.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-
-
+                MessageBox.Show("Thanh toán và cập nhật thông tin thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Cập nhật trạng thái của bàn thành "Available"
                 Table tableToUpdate = new Table
                 {
@@ -241,6 +253,7 @@ namespace QuanLyNhaHang
                     MessageBox.Show("Cập nhật trạng thái bàn thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
+                
                 if (selectedCustomer != null)
                 {
                     string username = selectedCustomer.Username;
@@ -315,11 +328,12 @@ namespace QuanLyNhaHang
                 var selectedItem = lsvKH.SelectedItems[0];
                 selectedCustomer = (Customers)selectedItem.Tag; // Gán đối tượng `selectedCustomer`
 
-                // Hiển thị thông báo với thông tin khách hàng được chọn
-                MessageBox.Show($"Bạn đã chọn khách hàng: {selectedCustomer.Username}",
+                // Hiển thị thông tin khách hàng
+                MessageBox.Show($"Bạn đã chọn khách hàng: {selectedCustomer.Username} (ID: {selectedCustomer.CustomerId})",
                                 "Thông báo",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
+
                 // Lấy danh sách VoucherWallet
                 VoucherWalletDAO voucherWalletDAO = new VoucherWalletDAO();
                 var voucherWallets = await voucherWalletDAO.GetVoucherWalletsByCustomerIdAsync(selectedCustomer.CustomerId);

@@ -95,6 +95,34 @@ namespace QuanLyNhaHang.DAO
                 }
             }
         }
+        public async Task<bool> UpdateCustomerIDAsync(int orderId, int customerId)
+        {
+            try
+            {
+                // Tạo URL API với các tham số id và customerID
+                string url = $"https://resmant11111-001-site1.anytempurl.com/Order/UpdateCustomerID?id={orderId}&customerID={customerId}";
 
+                // Gửi yêu cầu POST tới API
+                HttpResponseMessage response = await client.PutAsync(url, null);
+
+                // Kiểm tra xem yêu cầu có thành công không
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Cập nhật Customer ID thành công.");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"Lỗi: {response.StatusCode} - {response.ReasonPhrase}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ nếu có lỗi
+                Console.WriteLine($"Đã xảy ra lỗi: {ex.Message}");
+                return false;
+            }
+        }
     }
 }
