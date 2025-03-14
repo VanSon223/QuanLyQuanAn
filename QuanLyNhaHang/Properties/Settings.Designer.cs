@@ -34,5 +34,16 @@ namespace QuanLyNhaHang.Properties {
                 this["CurrentShiftID"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-1MBBKVA1\\VANSON;Initial Catalog=QuanLyQuanCafe;Integrated Secu" +
+            "rity=True;TrustServerCertificate=True")]
+        public string QuanLyQuanCafeConnectionString {
+            get {
+                return ((string)(this["QuanLyQuanCafeConnectionString"]));
+            }
+        }
     }
 }
