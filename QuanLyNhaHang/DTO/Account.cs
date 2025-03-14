@@ -1,25 +1,55 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace QuanLyNhaHang.DTO
 {
     public class Account
     {
-        public Account(string userName, string role, string password = null)
+        public Account(string userName,string displayName,int type,string password = null)
         {
-            this.Username = userName;
-            this.Role = role;
+            this.UserName = userName;
+            this.DisplayName = displayName;
+            this.Type = type;
             this.Password = password;
         }
+        public Account(DataRow row)
+        {
+            this.UserName = row["userName"].ToString();
+            this.DisplayName = row["displayName"].ToString();
+            this.Type = (int)row["type"];
+            this.Password = row["password"].ToString();
+        }
+        private int type;
 
-        public Account() { }
+        public int Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+        private String password;
 
-        [JsonProperty("username")]
-        public string Username { get; set; }
+        public String Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+        private String displayName;
 
-        [JsonProperty("role")]
-        public string Role { get; set; }
+        public String DisplayName
+        {
+            get { return displayName; }
+            set { displayName = value; }
+        }
+        private String userName;
 
-        [JsonProperty("password")]
-        public string Password { get; set; }
+        public String UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
     }
 }

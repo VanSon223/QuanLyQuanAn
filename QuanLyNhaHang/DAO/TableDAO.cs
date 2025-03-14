@@ -2,6 +2,7 @@
 using QuanLyNhaHang.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,85 +21,42 @@ namespace QuanLyNhaHang.DAO
             private set { TableDAO.instance = value; }
         }
 
-        private static readonly HttpClient client = new HttpClient();
-
-        // Phương thức để lấy danh sách bàn từ API
-        public async Task<List<Table>> GetTablesFromApiAsync()
+        private TableDAO() { }
+        public void SwitchTable(int id1, int id2)
         {
-            string url = "https://resmant11111-001-site1.anytempurl.com/Table/List";
-
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonResponse = await response.Content.ReadAsStringAsync();
-                    List<Table> tables = JsonConvert.DeserializeObject<List<Table>>(jsonResponse);
-                    return tables;
-                }
-                else
-                {
-                    Console.WriteLine("Lỗi khi lấy danh sách bàn.");
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return null;
-            }
+            DataTable data = DataProvider.Instance.ExecuteQuery("USP_SwicthTable @idTbale1 , @idTable2", new object[] { id1, id2 });
         }
-
-        // Phương thức để cập nhật trạng thái bàn
-        public async Task<bool> UpdateTableStatusAsync(int tableID, string status)
+        public List<Table> LoadTableList()
         {
-            string url = $"https://resmant11111-001-site1.anytempurl.com/Table/UpdateStatus?tableID={tableID}&status={status}";
+            List<Table> TableList = new List<Table>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("EXEC dbo.USP_GetTableList");
 
-            using (HttpClient client = new HttpClient())
+            foreach (DataRow item in data.Rows)
             {
-                try
-                {
-                    // Gửi yêu cầu PUT tới API
-                    HttpResponseMessage response = await client.PutAsync(url, null); // Không cần body, chỉ truyền query string
-
-                    // Kiểm tra nếu yêu cầu thành công
-                    return response.IsSuccessStatusCode;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Exception while updating table status: {ex.Message}");
-                    return false;
-                }
+                Table table = new Table(item);
+                TableList.Add(table);
             }
+
+            return TableList;
         }
-
-
-
-        // Phương thức để lấy bàn theo ID
-        public async Task<Table> GetTableByIDAsync(int tableID)
+        public bool InsertTable(string name)
         {
-            string url = $"https://resmant11111-001-site1.anytempurl.com/Table/GetById?id={tableID}";
+            string query = string.Format("INSERT dbo.TableFood(name,status)VALUES ( N'{0}',N'Trống')", name);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public bool UpdateTable(int id, string name)
+        {
+            string query = string.Format("UPDATE dbo.TableFood SET name = N'{0}', status = N'Trống'  WHERE id = {1}", name, id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+        public bool DeleteTable(int id)
+        {
 
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonResponse = await response.Content.ReadAsStringAsync();
-                    Table table = JsonConvert.DeserializeObject<Table>(jsonResponse);
-                    return table;
-                }
-                else
-                {
-                    Console.WriteLine("Lỗi khi lấy bàn theo ID.");
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception: {ex.Message}");
-                return null;
-            }
+            string query = string.Format("Delete TableFood where id = {0}", id);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
         }
     }
 }

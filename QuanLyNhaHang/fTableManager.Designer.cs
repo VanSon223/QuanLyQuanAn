@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fTableManager));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lsvKH = new System.Windows.Forms.ListView();
             this.lbOrderID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lsvBill = new System.Windows.Forms.ListView();
@@ -41,81 +37,46 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txbtotalPrice = new System.Windows.Forms.TextBox();
+            this.tbTotalPrice = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.gnbtnCheck = new Guna.UI2.WinForms.Guna2Button();
             this.gnibtnExit = new Guna.UI2.WinForms.Guna2ImageButton();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.gnbtnAdmin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.lbName = new System.Windows.Forms.Label();
-            this.lbFullname = new System.Windows.Forms.Label();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProfilesAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
             this.gnbtnCheckout = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.plLich = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtgvRe = new System.Windows.Forms.DataGridView();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.lsvVoucher = new System.Windows.Forms.ListView();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbSwitchTable = new System.Windows.Forms.ComboBox();
+            this.btSwitchTable = new System.Windows.Forms.Button();
+            this.nmDisCount = new System.Windows.Forms.NumericUpDown();
+            this.btDiscount = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbFood = new System.Windows.Forms.ComboBox();
+            this.btAddFood = new System.Windows.Forms.Button();
+            this.nmFoodCount = new System.Windows.Forms.NumericUpDown();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.plLich.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvRe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmDisCount)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmFoodCount)).BeginInit();
             this.SuspendLayout();
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Điểm";
-            this.columnHeader7.Width = 69;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "ID ";
-            this.columnHeader6.Width = 82;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Tên";
-            this.columnHeader5.Width = 70;
-            // 
-            // lsvKH
-            // 
-            this.lsvKH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lsvKH.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.lsvKH.HideSelection = false;
-            this.lsvKH.Location = new System.Drawing.Point(-1, 31);
-            this.lsvKH.Name = "lsvKH";
-            this.lsvKH.Size = new System.Drawing.Size(278, 181);
-            this.lsvKH.TabIndex = 11;
-            this.lsvKH.UseCompatibleStateImageBehavior = false;
-            this.lsvKH.View = System.Windows.Forms.View.Details;
-            this.lsvKH.SelectedIndexChanged += new System.EventHandler(this.lsvKH_SelectedIndexChanged);
             // 
             // lbOrderID
             // 
@@ -134,9 +95,8 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 21);
+            this.label1.Size = new System.Drawing.Size(0, 21);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Order:";
             // 
             // lsvBill
             // 
@@ -148,9 +108,9 @@
             this.lsvBill.Cursor = System.Windows.Forms.Cursors.Default;
             this.lsvBill.GridLines = true;
             this.lsvBill.HideSelection = false;
-            this.lsvBill.Location = new System.Drawing.Point(7, 24);
+            this.lsvBill.Location = new System.Drawing.Point(3, 8);
             this.lsvBill.Name = "lsvBill";
-            this.lsvBill.Size = new System.Drawing.Size(551, 352);
+            this.lsvBill.Size = new System.Drawing.Size(551, 421);
             this.lsvBill.TabIndex = 0;
             this.lsvBill.UseCompatibleStateImageBehavior = false;
             this.lsvBill.View = System.Windows.Forms.View.Details;
@@ -163,69 +123,29 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Số lượng";
-            this.columnHeader2.Width = 80;
+            this.columnHeader2.Width = 83;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Giá tiền";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Width = 116;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Thành Tiền";
             this.columnHeader4.Width = 165;
             // 
-            // label2
+            // tbTotalPrice
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.label2.Location = new System.Drawing.Point(3, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 19);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "SDT";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(64, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 22);
-            this.textBox1.TabIndex = 9;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(220, 5);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(34, 24);
-            this.btnSearch.TabIndex = 12;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lsvKH);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(1050, 418);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(278, 203);
-            this.panel1.TabIndex = 13;
-            // 
-            // txbtotalPrice
-            // 
-            this.txbtotalPrice.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbtotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
-            this.txbtotalPrice.Location = new System.Drawing.Point(297, 9);
-            this.txbtotalPrice.Name = "txbtotalPrice";
-            this.txbtotalPrice.ReadOnly = true;
-            this.txbtotalPrice.Size = new System.Drawing.Size(265, 27);
-            this.txbtotalPrice.TabIndex = 12;
-            this.txbtotalPrice.Text = "0";
-            this.txbtotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbTotalPrice.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTotalPrice.ForeColor = System.Drawing.Color.OrangeRed;
+            this.tbTotalPrice.Location = new System.Drawing.Point(297, 9);
+            this.tbTotalPrice.Name = "tbTotalPrice";
+            this.tbTotalPrice.ReadOnly = true;
+            this.tbTotalPrice.Size = new System.Drawing.Size(265, 27);
+            this.tbTotalPrice.TabIndex = 12;
+            this.tbTotalPrice.Text = "0";
+            this.tbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // panel2
             // 
@@ -234,77 +154,23 @@
             this.panel2.Controls.Add(this.lsvBill);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.lbOrderID);
-            this.panel2.Location = new System.Drawing.Point(765, 35);
+            this.panel2.Location = new System.Drawing.Point(769, 180);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(563, 385);
+            this.panel2.Size = new System.Drawing.Size(563, 434);
             this.panel2.TabIndex = 9;
             // 
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(43)))));
             this.guna2Panel1.BorderRadius = 12;
-            this.guna2Panel1.Controls.Add(this.guna2Button2);
-            this.guna2Panel1.Controls.Add(this.guna2Button1);
-            this.guna2Panel1.Controls.Add(this.gnbtnCheck);
             this.guna2Panel1.Controls.Add(this.gnibtnExit);
             this.guna2Panel1.Controls.Add(this.guna2PictureBox1);
             this.guna2Panel1.Controls.Add(this.gnbtnAdmin);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(155, 720);
+            this.guna2Panel1.Size = new System.Drawing.Size(155, 728);
             this.guna2Panel1.TabIndex = 13;
-            // 
-            // guna2Button2
-            // 
-            this.guna2Button2.BorderRadius = 12;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(25, 115);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(105, 50);
-            this.guna2Button2.TabIndex = 7;
-            this.guna2Button2.Text = "Home";
-            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.BorderRadius = 12;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(26, 249);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(105, 50);
-            this.guna2Button1.TabIndex = 6;
-            this.guna2Button1.Text = "Tables";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
-            // 
-            // gnbtnCheck
-            // 
-            this.gnbtnCheck.BorderRadius = 12;
-            this.gnbtnCheck.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.gnbtnCheck.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.gnbtnCheck.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.gnbtnCheck.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.gnbtnCheck.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.gnbtnCheck.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gnbtnCheck.ForeColor = System.Drawing.Color.White;
-            this.gnbtnCheck.Location = new System.Drawing.Point(26, 317);
-            this.gnbtnCheck.Name = "gnbtnCheck";
-            this.gnbtnCheck.Size = new System.Drawing.Size(105, 50);
-            this.gnbtnCheck.TabIndex = 5;
-            this.gnbtnCheck.Text = "Booking";
-            this.gnbtnCheck.Click += new System.EventHandler(this.gnbtnCheck_Click);
             // 
             // gnibtnExit
             // 
@@ -323,7 +189,6 @@
             this.gnibtnExit.PressedState.ImageSize = new System.Drawing.Size(40, 40);
             this.gnibtnExit.Size = new System.Drawing.Size(70, 65);
             this.gnibtnExit.TabIndex = 4;
-            this.gnibtnExit.Click += new System.EventHandler(this.gnibtnExit_Click);
             // 
             // guna2PictureBox1
             // 
@@ -346,7 +211,7 @@
             this.gnbtnAdmin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
             this.gnbtnAdmin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gnbtnAdmin.ForeColor = System.Drawing.Color.White;
-            this.gnbtnAdmin.Location = new System.Drawing.Point(26, 180);
+            this.gnbtnAdmin.Location = new System.Drawing.Point(21, 115);
             this.gnbtnAdmin.Name = "gnbtnAdmin";
             this.gnbtnAdmin.Size = new System.Drawing.Size(105, 50);
             this.gnbtnAdmin.TabIndex = 0;
@@ -356,37 +221,13 @@
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.LightGray;
-            this.guna2Panel2.Controls.Add(this.lbName);
-            this.guna2Panel2.Controls.Add(this.lbFullname);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox2);
             this.guna2Panel2.Controls.Add(this.guna2ControlBox1);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2Panel2.Location = new System.Drawing.Point(155, 0);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(1185, 29);
+            this.guna2Panel2.Size = new System.Drawing.Size(1199, 29);
             this.guna2Panel2.TabIndex = 14;
-            // 
-            // lbName
-            // 
-            this.lbName.AutoSize = true;
-            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
-            this.lbName.Location = new System.Drawing.Point(6, 3);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(42, 20);
-            this.lbName.TabIndex = 18;
-            this.lbName.Text = "Tên:";
-            // 
-            // lbFullname
-            // 
-            this.lbFullname.AutoSize = true;
-            this.lbFullname.BackColor = System.Drawing.Color.LightGray;
-            this.lbFullname.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFullname.ForeColor = System.Drawing.Color.Black;
-            this.lbFullname.Location = new System.Drawing.Point(59, 10);
-            this.lbFullname.Name = "lbFullname";
-            this.lbFullname.Size = new System.Drawing.Size(0, 19);
-            this.lbFullname.TabIndex = 17;
             // 
             // guna2ControlBox2
             // 
@@ -397,7 +238,7 @@
             this.guna2ControlBox2.FillColor = System.Drawing.Color.LightGray;
             this.guna2ControlBox2.ForeColor = System.Drawing.Color.White;
             this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(1085, 0);
+            this.guna2ControlBox2.Location = new System.Drawing.Point(1099, 0);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.Size = new System.Drawing.Size(50, 30);
             this.guna2ControlBox2.TabIndex = 15;
@@ -409,11 +250,10 @@
             this.guna2ControlBox1.ForeColor = System.Drawing.Color.White;
             this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.Red;
             this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(1132, 0);
+            this.guna2ControlBox1.Location = new System.Drawing.Point(1146, 0);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.Size = new System.Drawing.Size(50, 30);
             this.guna2ControlBox1.TabIndex = 0;
-            this.guna2ControlBox1.Click += new System.EventHandler(this.guna2ControlBox1_Click);
             // 
             // guna2Elipse1
             // 
@@ -422,35 +262,68 @@
             // 
             // guna2Panel3
             // 
-            this.guna2Panel3.BackColor = System.Drawing.Color.White;
-            this.guna2Panel3.Controls.Add(this.button2);
-            this.guna2Panel3.Controls.Add(this.flpTable);
+            this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel3.Controls.Add(this.menuStrip1);
             this.guna2Panel3.ForeColor = System.Drawing.Color.White;
-            this.guna2Panel3.Location = new System.Drawing.Point(161, 35);
+            this.guna2Panel3.Location = new System.Drawing.Point(162, 35);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(601, 586);
+            this.guna2Panel3.Size = new System.Drawing.Size(601, 34);
             this.guna2Panel3.TabIndex = 15;
             // 
-            // button2
+            // menuStrip1
             // 
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(4, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(24, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "X";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adminToolStripMenuItem,
+            this.ProfilesAccountToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(601, 28);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // adminToolStripMenuItem
+            // 
+            this.adminToolStripMenuItem.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(14, 24);
+            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
+            // 
+            // ProfilesAccountToolStripMenuItem
+            // 
+            this.ProfilesAccountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.personToolStripMenuItem,
+            this.logOutToolStripMenuItem});
+            this.ProfilesAccountToolStripMenuItem.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.ProfilesAccountToolStripMenuItem.Name = "ProfilesAccountToolStripMenuItem";
+            this.ProfilesAccountToolStripMenuItem.Size = new System.Drawing.Size(120, 24);
+            this.ProfilesAccountToolStripMenuItem.Text = "ProfileAccount";
+            this.ProfilesAccountToolStripMenuItem.Click += new System.EventHandler(this.ProfilesAccountToolStripMenuItem_Click);
+            // 
+            // personToolStripMenuItem
+            // 
+            this.personToolStripMenuItem.Name = "personToolStripMenuItem";
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.personToolStripMenuItem.Text = "Person";
+            this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.logOutToolStripMenuItem.Text = "LogOut";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // flpTable
             // 
-            this.flpTable.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.flpTable.Location = new System.Drawing.Point(3, 25);
+            this.flpTable.AutoScroll = true;
+            this.flpTable.BackColor = System.Drawing.Color.Transparent;
+            this.flpTable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.flpTable.Location = new System.Drawing.Point(169, 79);
             this.flpTable.Name = "flpTable";
-            this.flpTable.Size = new System.Drawing.Size(595, 558);
+            this.flpTable.Size = new System.Drawing.Size(594, 558);
             this.flpTable.TabIndex = 6;
-            this.flpTable.Visible = false;
+            this.flpTable.Paint += new System.Windows.Forms.PaintEventHandler(this.flpTable_Paint);
             // 
             // gnbtnCheckout
             // 
@@ -473,96 +346,58 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.cbSwitchTable);
             this.panel3.Controls.Add(this.gnbtnCheckout);
-            this.panel3.Controls.Add(this.txbtotalPrice);
+            this.panel3.Controls.Add(this.btSwitchTable);
+            this.panel3.Controls.Add(this.nmDisCount);
+            this.panel3.Controls.Add(this.tbTotalPrice);
+            this.panel3.Controls.Add(this.btDiscount);
             this.panel3.Location = new System.Drawing.Point(765, 627);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(582, 93);
             this.panel3.TabIndex = 16;
             // 
-            // plLich
+            // cbSwitchTable
             // 
-            this.plLich.BackColor = System.Drawing.Color.Transparent;
-            this.plLich.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.plLich.Controls.Add(this.button1);
-            this.plLich.Controls.Add(this.label3);
-            this.plLich.Controls.Add(this.dtgvRe);
-            this.plLich.Controls.Add(this.btnLoad);
-            this.plLich.ForeColor = System.Drawing.Color.Black;
-            this.plLich.Location = new System.Drawing.Point(161, 36);
-            this.plLich.Name = "plLich";
-            this.plLich.Size = new System.Drawing.Size(598, 582);
-            this.plLich.TabIndex = 17;
-            this.plLich.Visible = false;
+            this.cbSwitchTable.FormattingEnabled = true;
+            this.cbSwitchTable.Location = new System.Drawing.Point(7, 53);
+            this.cbSwitchTable.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSwitchTable.Name = "cbSwitchTable";
+            this.cbSwitchTable.Size = new System.Drawing.Size(100, 24);
+            this.cbSwitchTable.TabIndex = 16;
             // 
-            // button1
+            // btSwitchTable
             // 
-            this.button1.Location = new System.Drawing.Point(4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btSwitchTable.BackColor = System.Drawing.Color.White;
+            this.btSwitchTable.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btSwitchTable.Location = new System.Drawing.Point(7, 23);
+            this.btSwitchTable.Margin = new System.Windows.Forms.Padding(4);
+            this.btSwitchTable.Name = "btSwitchTable";
+            this.btSwitchTable.Size = new System.Drawing.Size(101, 31);
+            this.btSwitchTable.TabIndex = 15;
+            this.btSwitchTable.Text = "Chuyển bàn";
+            this.btSwitchTable.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // nmDisCount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(181, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Danh sách bàn đã được đặt";
+            this.nmDisCount.Location = new System.Drawing.Point(141, 55);
+            this.nmDisCount.Margin = new System.Windows.Forms.Padding(4);
+            this.nmDisCount.Name = "nmDisCount";
+            this.nmDisCount.Size = new System.Drawing.Size(108, 22);
+            this.nmDisCount.TabIndex = 14;
+            this.nmDisCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dtgvRe
+            // btDiscount
             // 
-            this.dtgvRe.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvRe.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dtgvRe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvRe.Location = new System.Drawing.Point(3, 27);
-            this.dtgvRe.Name = "dtgvRe";
-            this.dtgvRe.RowHeadersWidth = 51;
-            this.dtgvRe.RowTemplate.Height = 24;
-            this.dtgvRe.Size = new System.Drawing.Size(588, 550);
-            this.dtgvRe.TabIndex = 1;
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(570, 5);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(23, 23);
-            this.btnLoad.TabIndex = 0;
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // lsvVoucher
-            // 
-            this.lsvVoucher.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
-            this.lsvVoucher.HideSelection = false;
-            this.lsvVoucher.Location = new System.Drawing.Point(765, 450);
-            this.lsvVoucher.Name = "lsvVoucher";
-            this.lsvVoucher.Size = new System.Drawing.Size(279, 171);
-            this.lsvVoucher.TabIndex = 18;
-            this.lsvVoucher.UseCompatibleStateImageBehavior = false;
-            this.lsvVoucher.View = System.Windows.Forms.View.Details;
-            this.lsvVoucher.SelectedIndexChanged += new System.EventHandler(this.lsvVoucher_SelectedIndexChanged);
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "ID";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "SL";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "%Giảm";
+            this.btDiscount.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btDiscount.Location = new System.Drawing.Point(141, 23);
+            this.btDiscount.Margin = new System.Windows.Forms.Padding(4);
+            this.btDiscount.Name = "btDiscount";
+            this.btDiscount.Size = new System.Drawing.Size(108, 31);
+            this.btDiscount.TabIndex = 13;
+            this.btDiscount.Text = "Giảm giá";
+            this.btDiscount.UseVisualStyleBackColor = true;
+            this.btDiscount.Click += new System.EventHandler(this.btDiscount_Click);
             // 
             // label4
             // 
@@ -571,54 +406,102 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(161)))), ((int)(((byte)(22)))));
             this.label4.Location = new System.Drawing.Point(769, 426);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 19);
+            this.label4.Size = new System.Drawing.Size(0, 19);
             this.label4.TabIndex = 19;
-            this.label4.Text = "Ví voucher";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cbFood);
+            this.panel1.Controls.Add(this.btAddFood);
+            this.panel1.Controls.Add(this.nmFoodCount);
+            this.panel1.Controls.Add(this.cbCategory);
+            this.panel1.Location = new System.Drawing.Point(769, 36);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(563, 119);
+            this.panel1.TabIndex = 20;
+            // 
+            // cbFood
+            // 
+            this.cbFood.FormattingEnabled = true;
+            this.cbFood.Location = new System.Drawing.Point(19, 78);
+            this.cbFood.Margin = new System.Windows.Forms.Padding(4);
+            this.cbFood.Name = "cbFood";
+            this.cbFood.Size = new System.Drawing.Size(201, 24);
+            this.cbFood.TabIndex = 4;
+            // 
+            // btAddFood
+            // 
+            this.btAddFood.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btAddFood.Location = new System.Drawing.Point(424, 24);
+            this.btAddFood.Name = "btAddFood";
+            this.btAddFood.Size = new System.Drawing.Size(86, 62);
+            this.btAddFood.TabIndex = 3;
+            this.btAddFood.Text = "Them mon";
+            this.btAddFood.UseVisualStyleBackColor = true;
+            this.btAddFood.Click += new System.EventHandler(this.btAddFood_Click);
+            // 
+            // nmFoodCount
+            // 
+            this.nmFoodCount.Location = new System.Drawing.Point(243, 42);
+            this.nmFoodCount.Name = "nmFoodCount";
+            this.nmFoodCount.Size = new System.Drawing.Size(120, 22);
+            this.nmFoodCount.TabIndex = 2;
+            this.nmFoodCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // cbCategory
+            // 
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(19, 8);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(201, 24);
+            this.cbCategory.TabIndex = 0;
+            this.cbCategory.SelectedIndexChanged += new System.EventHandler(this.cbCategory_SelectedIndexChanged);
             // 
             // fTableManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1340, 720);
-            this.Controls.Add(this.plLich);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.lsvVoucher);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(1354, 728);
+            this.Controls.Add(this.flpTable);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.guna2Panel2);
             this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "fTableManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
             this.guna2Panel3.ResumeLayout(false);
+            this.guna2Panel3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.plLich.ResumeLayout(false);
-            this.plLich.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvRe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmDisCount)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nmFoodCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ListView lsvKH;
         private System.Windows.Forms.Label lbOrderID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView lsvBill;
@@ -626,39 +509,34 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txbtotalPrice;
+        private System.Windows.Forms.TextBox tbTotalPrice;
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2Button gnbtnAdmin;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private System.Windows.Forms.FlowLayoutPanel flpTable;
         private Guna.UI2.WinForms.Guna2Button gnbtnCheckout;
         private System.Windows.Forms.Panel panel3;
         private Guna.UI2.WinForms.Guna2ImageButton gnibtnExit;
-        private System.Windows.Forms.Panel plLich;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.DataGridView dtgvRe;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbFullname;
-        private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListView lsvVoucher;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private Guna.UI2.WinForms.Guna2Button gnbtnCheck;
-        private System.Windows.Forms.Button button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.FlowLayoutPanel flpTable;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btAddFood;
+        private System.Windows.Forms.NumericUpDown nmFoodCount;
+        private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.ComboBox cbSwitchTable;
+        private System.Windows.Forms.Button btSwitchTable;
+        private System.Windows.Forms.NumericUpDown nmDisCount;
+        private System.Windows.Forms.Button btDiscount;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ProfilesAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
+        private Guna.UI2.WinForms.Guna2Button gnbtnAdmin;
+        private System.Windows.Forms.ComboBox cbFood;
     }
 }

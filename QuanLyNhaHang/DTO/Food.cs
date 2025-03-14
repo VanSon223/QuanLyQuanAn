@@ -7,31 +7,36 @@ using System.Threading.Tasks;
 
 namespace QuanLyNhaHang.DTO
 {
-    public class Table
+    public class Food
     {
-
-        public Table(int id, string name, string status)
+        public Food(int id, string name, int categoryID, float price)
         {
             this.ID = id;
             this.Name = name;
-            this.Status = status;
+            this.CategoryID = categoryID;
+            this.Price = price;
         }
-        public Table(DataRow row)
+        public Food(DataRow row)
         {
             this.ID = (int) row["id"];
             this.Name = row["name"].ToString();
-            this.Status = row["status"].ToString();
+            this.CategoryID = (int) row["idcategory"];
+            this.Price = (float)Convert.ToDouble( row["price"].ToString());
         }
+        private float price;
 
-
-        private string status;
-
-        public string Status
+        public float Price
         {
-            get { return status; }
-            set { status = value; }
+            get { return price; }
+            set { price = value; }
         }
+        private int categoryID;
 
+        public int CategoryID
+        {
+            get { return categoryID; }
+            set { categoryID = value; }
+        }
         private string name;
 
         public string Name
@@ -39,7 +44,6 @@ namespace QuanLyNhaHang.DTO
             get { return name; }
             set { name = value; }
         }
-
         private int iD;
 
         public int ID

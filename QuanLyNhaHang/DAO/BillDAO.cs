@@ -1,17 +1,16 @@
-﻿using Newtonsoft.Json;
-using QuanLyNhaHang.DTO;
+﻿using QuanLyNhaHang.DTO;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
+using System.Data;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
+
 namespace QuanLyNhaHang.DAO
 {
     public class BillDAO
     {
         private static BillDAO instance;
-        private static readonly HttpClient client = new HttpClient(); // Định nghĩa HttpClient ở đây
 
         public static BillDAO Instance
         {
@@ -19,25 +18,49 @@ namespace QuanLyNhaHang.DAO
             private set { BillDAO.instance = value; }
         }
 
-        public async Task<int> GetUncheckBillIDByTableIDAsync(int id)
+        private BillDAO() { }
+        /// <summary>
+        /// Thành Công : Bill ID
+        /// Thất bại : -1
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int GetUncheckBillIDbyTableID(int id)
         {
-            string url = $"https://resmant11111-001-site1.anytempurl.com/Order/List"; // Lấy danh sách đơn hàng
-
-            HttpResponseMessage response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM dbo.Bill WHERE idTable = " + id + " AND status = 0");
+            if (data.Rows.Count > 0)
             {
-                string jsonResponse = await response.Content.ReadAsStringAsync();
-                List<Orders> orders = JsonConvert.DeserializeObject<List<Orders>>(jsonResponse);
-
-                // Tìm đơn hàng không kiểm tra cho bàn
-                var uncheckedBill = orders.FirstOrDefault(o => o.TableID == id && o.Status == "");
-                if (uncheckedBill != null)
-                {
-                    return uncheckedBill.OrderID; // Trả về OrderID
-                }
+                Bill bill = new Bill(data.Rows[0]);
+                return bill.ID;
             }
+            return -1;
+        }
 
-            return -1; // Không tìm thấy
+        public void CheckOut(int id, int discount, float totalPrice)
+        {
+            string query = ("UPDATE dbo.Bill SET DateCheckOut = GETDATE(), status = 1, " + " discount = " + discount + ", totalPrice = " + totalPrice + " WHERE id = " + id);
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
+        public DataTable GetBillListByDate(DateTime checkIn, DateTime checkOut)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec USP_GetListBillByDate @checkIn , @checkOut", new object[] { checkIn, checkOut });
+
+        }
+        public void InsertBill(int id)
+        {
+            DataProvider.Instance.ExecuteNonQuery("exec USP_InsertBill @idTable", new object[] { id });
+        }
+        public int GetMaxIDBill()
+        {
+            try
+            {
+                return (int)DataProvider.Instance.ExecuteScalar("SELECT MAX(id) FROM dbo.Bill");
+            }
+            catch
+            {
+                return 1;
+            }
         }
     }
 }
