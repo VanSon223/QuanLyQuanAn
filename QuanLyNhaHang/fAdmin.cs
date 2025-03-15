@@ -78,24 +78,7 @@ namespace QuanLyNhaHang
             dtpkFromDate.Value = new DateTime(today.Year, today.Month, 1);
             dtpkToDate.Value = dtpkFromDate.Value.AddMonths(1).AddDays(-1);
         }
-        private void tbUserName_TextChanged(object sender, EventArgs e)
-        {
-            int id = (int)dtgvFood.SelectedCells[0].OwningRow.Cells["CategoryID"].Value;
-            Category category = CategoryDAO.Instance.GetCategoryByID(id);
-            cbFoodCaregory.SelectedItem = category;
-            int index = -1;
-            int i = 0;
-            foreach (Category item in cbFoodCaregory.Items)
-            {
-                if (item.ID == category.ID)
-                {
-                    index = i;
-                    break;
-                }
-                i++;
-            }
-            cbFoodCaregory.SelectedIndex = index;
-        }
+        
 
         void AddFoodBinding()
         {
@@ -192,17 +175,6 @@ namespace QuanLyNhaHang
 
         private void btEditTable_Click(object sender, EventArgs e)
         {
-            string name = tbTableName.Text;
-            int tableID = Convert.ToInt32(tbTableID.Text);
-            if (TableDAO.Instance.UpdateTable(tableID, name))
-            {
-                MessageBox.Show("Sửa bàn thành công");
-                LoadListTable();
-            }
-            else
-            {
-                MessageBox.Show("Có lỗi khi sửa bàn");
-            }
 
         }
 
@@ -218,12 +190,12 @@ namespace QuanLyNhaHang
             {
                 MessageBox.Show("Có lỗi khi sửa bàn");
             }
-
         }
         private void btShowCategory_Click(object sender, EventArgs e)
         {
             LoadListCategory();
         }
+       
         private void btAddCategory_Click(object sender, EventArgs e)
         {
             string name = tbCategoryName.Text;
@@ -236,6 +208,19 @@ namespace QuanLyNhaHang
             else
             {
                 MessageBox.Show("Có lỗi khi thêm danh mục");
+            }
+        }
+        private void btDeleteCategory_Click(object sender, EventArgs e)
+        {
+            int categoryID = Convert.ToInt32(tbCategoryID.Text);
+            if (CategoryDAO.Instance.DeleteCategory(categoryID))
+            {
+                MessageBox.Show("Xóa danh mục thành công");
+                LoadListCategory();
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi khi xóa danh mục");
             }
         }
         private void button3_Click(object sender, EventArgs e)
@@ -253,25 +238,13 @@ namespace QuanLyNhaHang
             }
         }
 
-        private void btDeleteCategory_Click(object sender, EventArgs e)
-        {
-            int categoryID = Convert.ToInt32(tbCategoryID.Text);
-            if (CategoryDAO.Instance.DeleteCategory(categoryID))
-            {
-                MessageBox.Show("Xóa danh mục thành công");
-                LoadListCategory();
-            }
-            else
-            {
-                MessageBox.Show("Có lỗi khi xóa danh mục");
-            }
-        }
+
         private void btShowFood_Click(object sender, EventArgs e)
         {
             LoadListFood();
         }
 
-        private void btSearchFood_Click(object sender, EventArgs e)
+        private void btnSeachFood_Click(object sender, EventArgs e)
         {
             FoodList.DataSource = SearchFoodByName(tbSearchFoodName.Text);
         }
@@ -293,7 +266,6 @@ namespace QuanLyNhaHang
             {
                 MessageBox.Show("Có lỗi khi thêm món");
             }
-
         }
 
         private void btEditFood_Click(object sender, EventArgs e)
@@ -415,6 +387,26 @@ namespace QuanLyNhaHang
         {
 
         }
+
+        private void btnReEnterAccount_Click(object sender, EventArgs e)
+        {
+            string userName = tbUserName.Text;
+
+            ResetPass(userName);
+        }
+
+
+
+
+
+
+
+
+
+
+
         #endregion
+
+       
     }
 }

@@ -204,15 +204,12 @@ namespace QuanLyNhaHang
         {
 
         }
-
-        #endregion
-
         private void gnbtnAdmin_Click(object sender, EventArgs e)
         {
             adminToolStripMenuItem_Click(sender, e);
         }
 
-       
+
 
         private void btDiscount_Click(object sender, EventArgs e)
         {
@@ -223,5 +220,13 @@ namespace QuanLyNhaHang
         {
 
         }
+
+        private void gnibtnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
+
+
     }
 }

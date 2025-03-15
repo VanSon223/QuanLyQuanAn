@@ -189,6 +189,7 @@
             this.gnibtnExit.PressedState.ImageSize = new System.Drawing.Size(40, 40);
             this.gnibtnExit.Size = new System.Drawing.Size(70, 65);
             this.gnibtnExit.TabIndex = 4;
+            this.gnibtnExit.Click += new System.EventHandler(this.gnibtnExit_Click);
             // 
             // guna2PictureBox1
             // 
