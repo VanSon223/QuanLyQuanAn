@@ -394,6 +394,10 @@ namespace QuanLyNhaHang
 
             ResetPass(userName);
         }
+        private void btnViewBill_Click(object sender, EventArgs e)
+        {
+            LoadListBillByDate(dtpkFromDate.Value, dtpkToDate.Value);
+        }
 
 
 
@@ -407,6 +411,6 @@ namespace QuanLyNhaHang
 
         #endregion
 
-       
+
     }
 }

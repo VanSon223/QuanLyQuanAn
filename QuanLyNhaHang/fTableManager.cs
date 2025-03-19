@@ -198,7 +198,11 @@ namespace QuanLyNhaHang
 
         private void btSwitchTable_Click(object sender, EventArgs e)
         {
-
+            int id1 = (lsvBill.Tag as Table).ID;
+            int id2 = (cbSwitchTable.SelectedItem as Table).ID;
+            if (MessageBox.Show(string.Format("Bạn có muốn chyển bàn {0} qua bàn {1}", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name), "Thông Báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                TableDAO.Instance.SwitchTable(id1, id2);
+            LoadTable();
         }
         private void flpTable_Paint(object sender, PaintEventArgs e)
         {
@@ -225,8 +229,9 @@ namespace QuanLyNhaHang
         {
             this.Close();
         }
+
         #endregion
 
-
+       
     }
 }
